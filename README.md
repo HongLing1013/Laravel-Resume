@@ -14,14 +14,14 @@
 ## 安裝
 
 - Laravel
-    1 安裝 Laravel 安裝器 ```composer global require "laravel/installer"```
-    2 新增一個 Laravel 專案 ```composer create-project laravel/laravel ProjectName```
-    3 進入專案資料夾內，運行 Laravel 伺服器 ```php artisan serve```
+1. 安裝 Laravel 安裝器 ```composer global require "laravel/installer"```
+2. 新增一個 Laravel 專案 ```composer create-project laravel/laravel ProjectName```
+3. 進入專案資料夾內，運行 Laravel 伺服器 ```php artisan serve```
 
 - Laravel-Admin
-    1 安裝 Laravel-Admin ```composer require encore/laravel-admin```
-    2 設定 congif/app.php ，最上方加入一行 code 註冊服務
+1. 安裝 Laravel-Admin ```composer require encore/laravel-admin```
+2. 設定 congif/app.php ，最上方加入一行 code 註冊服務
     ```Encore\Admin\Providers\AdminServiceProvider::class;```
-    3 進入專案資料夾內，產生配置文件(config/admin.php)```php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"```
-    4 安裝 Laravel-Admin ```php artisan admin:install```
-    5 設定檔(config/admin.php)內的disk改成public目錄
+3. 進入專案資料夾內，產生配置文件(config/admin.php)```php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"```
+4. 安裝 Laravel-Admin ```php artisan admin:install```
+5. 設定檔(config/admin.php)內的disk改成public目錄
