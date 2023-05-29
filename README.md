@@ -33,8 +33,9 @@
 
 5. 設定檔(config/admin.php)內的disk改成public目錄
 
-## Routing 的設定方式
+## Routing
 
+#### 請求方式一覽
 
 | 請求方式 | 特色 |
 |---|---|
@@ -46,6 +47,7 @@
 | delete | 刪除的時候使用 |
 | options | |
 
+#### Routing的幾種設定方式
 
 1. 直接return頁面內容
 ```php
@@ -66,3 +68,37 @@ return view('blade的檔案名稱');
 ## Blade 模板/視圖
 
 - 樣板大多都會放在 resources/views/layouts 資料夾內
+
+#### @extends
+- @extends 在視圖中，用來繼承樣板，例如我有一個樣板，位置在 resources/views/layouts/app.blade.php ，我想要在index的頁面繼承它，那我在resources/views/index.blade.php 的頁面最上方就要使用 @extends('資料夾.blade檔案名稱')
+```php
+@extends('layouts.app')
+
+//其他程式碼..
+```
+
+#### @yield
+- @yield 在視圖中，用來定義一個section，設定要挖空的區域。
+- 範例：
+1. 在 resources/views/layouts/app.blade.php 樣板當中挖空一個區塊，取名為content
+```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Everybody</title>
+</head>
+<body>
+    <div class="container">
+        @yield('content')
+    </div>
+</body>
+</html>
+```
+2. 在 resources/views/index.blade.php 中，使用@section('區塊名稱')填空
+```php
+@extends('layouts.app')
+
+@section('content')
+    <h1>Hello World!!</h1>
+@endsection
+``` 
