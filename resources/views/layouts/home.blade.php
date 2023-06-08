@@ -12,6 +12,7 @@
     @include('layouts.header')
   </header><!-- End Header -->
 
+  @yield('contant')
   <!-- ======= About Section ======= -->
   <section id="about" class="about">
 
