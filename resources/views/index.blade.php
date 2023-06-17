@@ -21,15 +21,11 @@ $tagName = ['about' , 'resume' , 'services' , 'portfolio' , 'contact' ];
 @endsection
 
 @section('content')
-
   @foreach ($tagName as $tag)
-
       <section id="{{$tag}}" class="{{$tag}}">
-        @include('layouts.' . $tag)
+        @include('layouts.' . $tag )
       </section>
-
   @endforeach
-
 @endsection
 
 @section('footer')

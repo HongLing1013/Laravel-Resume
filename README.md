@@ -102,3 +102,25 @@ return view('blade的檔案名稱');
     <h1>Hello World!!</h1>
 @endsection
 ``` 
+
+#### @include
+- @include 用法同 php 的 include 
+
+- 傳值：
+    可使用下列方式
+    ```php
+    @include('layouts.app' , 'title' => 'hello world')
+    ``` 
+    將參數title傳進去layouts/app.blade.php，
+    取用方式如下
+    ```html
+    <h1>{{$title}}</h1>
+    ```
+
+## Migrate
+
+#### 創建 Migration 的方法
+1. 單純創建一個 Migration
+    ```php artisan make:migration create_menu_table```
+2. 創建 Migration 時順便創建一個 Model
+    ```php artisan make:model Menu --migration```
