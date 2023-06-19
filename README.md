@@ -131,3 +131,10 @@ return view('blade的檔案名稱');
     ```php artisan migrate```
 - 當創建資料表後可執行下面指令還原資料表，確保創建與還原的程式碼都可正常運行
     ```php artisan migrate:rollback```
+
+## Model
+
+- 設定允許賦值的參數
+```php
+protected $fillable = ['欄位名稱'];
+```
