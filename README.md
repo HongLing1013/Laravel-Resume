@@ -124,3 +124,10 @@ return view('blade的檔案名稱');
     ```php artisan make:migration create_menu_table```
 2. 創建 Migration 時順便創建一個 Model
     ```php artisan make:model Menu --migration```
+
+#### 執行與還原 Migration
+
+- 當寫好了 Migration 以後，可執行下面指令創建資料表
+    ```php artisan migrate```
+- 當創建資料表後可執行下面指令還原資料表，確保創建與還原的程式碼都可正常運行
+    ```php artisan migrate:rollback```
