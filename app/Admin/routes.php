@@ -13,4 +13,7 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
+    /* 前台選單 */
+    $router->resource('auth/frontend-menu', MenuController::class);
+
 });

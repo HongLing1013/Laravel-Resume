@@ -138,3 +138,38 @@ return view('blade的檔案名稱');
 ```php
 protected $fillable = ['欄位名稱'];
 ```
+
+
+
+
+
+
+# Laravel-Admin
+
+## 建立 Admin Controller
+
+使用指令創建 Admin 的控制器
+
+-  Mac os、 Linux - 有 model 的創建指令 
+
+```php artisan admin:make MenuController --model=App\\Models\\Menu```
+
+- Windows - 有 model 的創建指令 
+
+```php artisan admin:make MenuController --model=App\Menu```
+
+- Mac os、 Linux - 沒 model 的創建指令 
+
+```php artisan admin:make MenuController```
+
+- Windows - 沒 model 的創建指令 
+
+```php artisan admin:make MenuController```
+
+## Routing
+
+- Admin 的路由設定並不在 routes/web.php ，而是在 app/Admin/routes.php
+- 在 function 當中加入下列代碼新增可通行路徑
+```php
+$router->resource('auth/frontend-menu', MenuController::class);
+```
