@@ -139,7 +139,14 @@ return view('blade的檔案名稱');
 protected $fillable = ['欄位名稱'];
 ```
 
+## Controller
 
+#### 創建一個沒有 Model 的 Controller
+
+- 沒有方法的版本 
+```php artisan make:controller HomeController```
+- 有方法的版本 
+```php artisan make:controller HomeController --resource```
 
 
 
