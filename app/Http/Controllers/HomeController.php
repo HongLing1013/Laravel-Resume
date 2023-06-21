@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
+        $menus = Menu::from('name');
         return view('index', ['menus' => $menus]);
     }
 

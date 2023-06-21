@@ -1,4 +1,5 @@
 @php
+print_r($menus);exit;
 $tagName = ['about' , 'resume' , 'services' , 'portfolio' , 'contact' ];
 @endphp
 
