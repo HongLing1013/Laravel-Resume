@@ -2,8 +2,8 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Me</p>
+        <h2>{{$tagName}}</h2>
+        <p>{{$tagText}}</p>
       </div>
 
       <div class="row mt-2">
