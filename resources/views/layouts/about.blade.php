@@ -4,8 +4,8 @@
     <div class="about-me container">
 
       <div class="section-title">
-        <h2>About</h2>
-        <p>Learn more about me</p>
+        <h2>{{$tagName}}</h2>
+        <p>{{$tagText}}</p>
       </div>
 
       <div class="row">

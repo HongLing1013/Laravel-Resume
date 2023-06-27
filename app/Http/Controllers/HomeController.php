@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Index;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,8 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $menus = Menu::from('name');
-        return view('index', ['menus' => $menus]);
+        $menus = Menu::all();
+
+        return view('index', [ 'menus' => $menus ]);
     }
 
     /**

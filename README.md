@@ -148,6 +148,10 @@ protected $fillable = ['欄位名稱'];
 - 有方法的版本 
 ```php artisan make:controller HomeController --resource```
 
+#### 傳參數到視圖
+```php
+return view('頁面名稱', ['blade使用的變數名稱' => $controller使用的變數名稱]);
+```
 
 
 
