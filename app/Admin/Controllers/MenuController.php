@@ -15,7 +15,7 @@ class MenuController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Menu';
+    protected $title = '選單列表';
 
     /**
      * Make a grid builder.
@@ -26,11 +26,11 @@ class MenuController extends AdminController
     {
         $grid = new Grid(new Menu());
 
-        $grid->column('id', __('Id'));
-        $grid->column('title', __('Title'));
-        $grid->column('content', __('Content'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('id', __('Id'))->sortable();
+        $grid->column('title', __('選單名稱'))->sortable();
+        $grid->column('content', __('選單說明'))->sortable();
+        $grid->column('created_at', __('創建時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }

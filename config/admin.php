@@ -4,44 +4,41 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Laravel-admin name
+    | Resume-admin name
     |--------------------------------------------------------------------------
     |
-    | This value is the name of laravel-admin, This setting is displayed on the
-    | login page.
+    | 登錄頁面的大標題，顯示在登錄頁面
     |
     */
-    'name' => 'Laravel-admin',
+    'name' => 'Resume 後台管理',
 
     /*
     |--------------------------------------------------------------------------
     | Laravel-admin logo
     |--------------------------------------------------------------------------
     |
-    | The logo of all admin pages. You can also set it as an image by using a
-    | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
+    | 管理頁面的logo設置，如果要設置為圖片，可以設置為img標籤
+    | <img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Laravel</b> admin',
+    'logo' => '<b>Resume</b> 後台管理',
 
     /*
     |--------------------------------------------------------------------------
     | Laravel-admin mini logo
     |--------------------------------------------------------------------------
     |
-    | The logo of all admin pages when the sidebar menu is collapsed. You can
-    | also set it as an image by using a `img` tag, eg
-    | '<img src="http://logo-url" alt="Admin logo">'.
+    | 當左側邊欄收起時顯示的小logo，也可以設置為html標籤
     |
     */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '<b>後台</b>',
 
     /*
     |--------------------------------------------------------------------------
     | Laravel-admin bootstrap setting
     |--------------------------------------------------------------------------
     |
-    | This value is the path of laravel-admin bootstrap file.
+    | 用來設置啟動文件
     |
     */
     'bootstrap' => app_path('Admin/bootstrap.php'),
@@ -51,9 +48,7 @@ return [
     | Laravel-admin route settings
     |--------------------------------------------------------------------------
     |
-    | The routing configuration of the admin page, including the path prefix,
-    | the controller namespace, and the default middleware. If you want to
-    | access through the root path, just set the prefix to empty string.
+    | 後台路由設定，應用在`app/Admin/routes.php`裡面
     |
     */
     'route' => [
@@ -70,9 +65,7 @@ return [
     | Laravel-admin install directory
     |--------------------------------------------------------------------------
     |
-    | The installation directory of the controller and routing configuration
-    | files of the administration page. The default is `app/Admin`, which must
-    | be set before running `artisan admin::install` to take effect.
+    | 後台的安裝目錄，如果在運行`admin:install`之前修改它，那麼後台目錄將會是這個設定的目錄
     |
     */
     'directory' => app_path('Admin'),
@@ -82,17 +75,17 @@ return [
     | Laravel-admin html title
     |--------------------------------------------------------------------------
     |
-    | Html title for all pages.
+    | 所有頁面的<title>標籤內容
     |
     */
-    'title' => 'Admin',
+    'title' => 'Resume 後台',
 
     /*
     |--------------------------------------------------------------------------
     | Access via `https`
     |--------------------------------------------------------------------------
     |
-    | If your page is going to be accessed via https, set it to `true`.
+    | 後台是否使用https
     |
     */
     'https' => env('ADMIN_HTTPS', false),
@@ -102,10 +95,7 @@ return [
     | Laravel-admin auth setting
     |--------------------------------------------------------------------------
     |
-    | Authentication settings for all admin pages. Include an authentication
-    | guard and a user provider setting of authentication driver.
-    |
-    | You can specify a controller for `login` `logout` and other auth routes.
+    | 後台用戶使用的用戶認證設定
     |
     */
     'auth' => [
@@ -128,13 +118,13 @@ return [
             ],
         ],
 
-        // Add "remember me" to login form
+        // 將"記住我"功能添加到登入頁面
         'remember' => true,
 
-        // Redirect to the specified URI when user is not authorized.
+        // 登陸之後的跳轉地址
         'redirect_to' => 'auth/login',
 
-        // The URIs that should be excluded from authorization.
+        // 登陸驗證的排除URI
         'excepts' => [
             'auth/login',
             'auth/logout',
@@ -146,18 +136,19 @@ return [
     | Laravel-admin upload setting
     |--------------------------------------------------------------------------
     |
-    | File system configuration for form upload files and images, including
-    | disk and upload path.
+    | 在Form表單中的image和file類型的預設上傳磁碟和目錄設置，其中disk的設定會使用在
+    | config/filesystem.php裡面設定的一項disk
     |
     */
     'upload' => [
 
-        // Disk in `config/filesystem.php`.
-        'disk' => 'admin',
+        // `config/filesystem.php`中設置的disk
+        // 設定成public可編輯 原始為admin
+        'disk' => 'public',
 
-        // Image and file upload path under the disk above.
+        // image和file類型表單元素的上傳目錄
         'directory' => [
-            'image' => 'images',
+            'image' => '/',
             'file'  => 'files',
         ],
     ],
@@ -167,60 +158,70 @@ return [
     | Laravel-admin database settings
     |--------------------------------------------------------------------------
     |
-    | Here are database settings for laravel-admin builtin model & tables.
+    | 安裝laravel-admin之後，預設會在資料庫中新建下面9張表，包括用戶、選單、角色、權限、
+    | 日誌和它們之間的關係表，下面的設定是標的名字和對應的模型
+    |
+    | 其中的`connection`設定為下面幾個模型所使用的資料庫連接，對應`config/database.php`
+    | 中的connections裡面設置的connection,
+    |
+    | 如果你想修改資料庫裡面這幾個表的名字，可以在運行`admin:install`之前修改它們
+    | 如果install之後想修改，那麼可以手動在資料庫中修改，然後再修改下面幾項的值
+    |
+    | 如果你需要在表裡面增加字段，可以自定義模型，然後替換掉下面的模型設置即可，控制器的修改
+    | 也可以通過覆蓋路由的方式、覆蓋掉內置的路由設定
     |
     */
     'database' => [
 
-        // Database connection for following tables.
+        // 以下表格的資料庫連接。
         'connection' => '',
-
-        // User tables and model.
+    
+        // 使用者表格和模型。
         'users_table' => 'admin_users',
         'users_model' => Encore\Admin\Auth\Database\Administrator::class,
-
-        // Role table and model.
+    
+        // 角色表格和模型。
         'roles_table' => 'admin_roles',
         'roles_model' => Encore\Admin\Auth\Database\Role::class,
-
-        // Permission table and model.
+    
+        // 權限表格和模型。
         'permissions_table' => 'admin_permissions',
         'permissions_model' => Encore\Admin\Auth\Database\Permission::class,
-
-        // Menu table and model.
+    
+        // 選單表格和模型。
         'menu_table' => 'admin_menu',
         'menu_model' => Encore\Admin\Auth\Database\Menu::class,
-
-        // Pivot table for table above.
+    
+        // 上述表格的中介表格。
         'operation_log_table'    => 'admin_operation_log',
         'user_permissions_table' => 'admin_user_permissions',
         'role_users_table'       => 'admin_role_users',
         'role_permissions_table' => 'admin_role_permissions',
         'role_menu_table'        => 'admin_role_menu',
-    ],
+    ],    
 
     /*
     |--------------------------------------------------------------------------
     | User operation log setting
     |--------------------------------------------------------------------------
     |
-    | By setting this option to open or close operation log in laravel-admin.
+    | 操作日誌記錄的設定
     |
     */
     'operation_log' => [
-
-        'enable' => true,
-
+    
         /*
-         * Only logging allowed methods in the list
+         * 是否開啟日誌記錄、預設打開
+         */
+        'enable' => true,
+    
+        /*
+         * 允許記錄請求日誌的HTTP方法
          */
         'allowed_methods' => ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH'],
-
+    
         /*
-         * Routes that will not log to database.
-         *
-         * All method to path like: admin/auth/logs
-         * or specific method to path like: get:admin/auth/logs.
+         * 不需要被記錄日誌的url路徑
          */
         'except' => [
             env('ADMIN_ROUTE_PREFIX', 'admin').'/auth/logs*',
@@ -231,6 +232,9 @@ return [
     |--------------------------------------------------------------------------
     | Indicates whether to check route permission.
     |--------------------------------------------------------------------------
+    |
+    | 是否檢查路由權限
+    |
     */
     'check_route_permission' => true,
 
@@ -238,6 +242,9 @@ return [
     |--------------------------------------------------------------------------
     | Indicates whether to check menu roles.
     |--------------------------------------------------------------------------
+    |
+    | 是否檢查菜單角色
+    |
     */
     'check_menu_roles'       => true,
 
@@ -246,7 +253,7 @@ return [
     | User default avatar
     |--------------------------------------------------------------------------
     |
-    | Set a default avatar for newly created users.
+    | 默認頭像
     |
     */
     'default_avatar' => '/vendor/laravel-admin/AdminLTE/dist/img/user2-160x160.jpg',
@@ -256,7 +263,7 @@ return [
     | Admin map field provider
     |--------------------------------------------------------------------------
     |
-    | Supported: "tencent", "google", "yandex".
+    | model-form中map組件所使用的地圖設定，支持三個地圖服務商: "tencent", "google", "yandex".
     |
     */
     'map_provider' => 'google',
@@ -266,10 +273,9 @@ return [
     | Application Skin
     |--------------------------------------------------------------------------
     |
-    | This value is the skin of admin pages.
-    | @see https://adminlte.io/docs/2.4/layout
+    | 皮膚設置，參考https://adminlte.io/docs/2.4/layout設置
     |
-    | Supported:
+    | 支持的設置為:
     |    "skin-blue", "skin-blue-light", "skin-yellow", "skin-yellow-light",
     |    "skin-green", "skin-green-light", "skin-purple", "skin-purple-light",
     |    "skin-red", "skin-red-light", "skin-black", "skin-black-light".
@@ -282,10 +288,9 @@ return [
     | Application layout
     |--------------------------------------------------------------------------
     |
-    | This value is the layout of admin pages.
-    | @see https://adminlte.io/docs/2.4/layout
+    | 佈局設置，參考https://adminlte.io/docs/2.4/layout
     |
-    | Supported: "fixed", "layout-boxed", "layout-top-nav", "sidebar-collapse",
+    | 支持的設置為: "fixed", "layout-boxed", "layout-top-nav", "sidebar-collapse",
     | "sidebar-mini".
     |
     */
@@ -296,7 +301,7 @@ return [
     | Login page background image
     |--------------------------------------------------------------------------
     |
-    | This value is used to set the background image of login page.
+    | 登錄頁面的背景圖設置
     |
     */
     'login_background_image' => '',
@@ -306,8 +311,7 @@ return [
     | Show version at footer
     |--------------------------------------------------------------------------
     |
-    | Whether to display the version number of laravel-admin at the footer of
-    | each page
+    | 是否在頁面的右下角顯示當前laravel-admin的版本
     |
     */
     'show_version' => true,
@@ -317,7 +321,7 @@ return [
     | Show environment at footer
     |--------------------------------------------------------------------------
     |
-    | Whether to display the environment at the footer of each page
+    | 是否在頁面的右下角顯示當前的環境
     |
     */
     'show_environment' => true,
@@ -327,16 +331,18 @@ return [
     | Menu bind to permission
     |--------------------------------------------------------------------------
     |
-    | whether enable menu bind to a permission
+    | 選單是否綁定權限
+    |
     */
     'menu_bind_permission' => true,
-
+    
     /*
     |--------------------------------------------------------------------------
     | Enable default breadcrumb
     |--------------------------------------------------------------------------
     |
-    | Whether enable default breadcrumb for every page content.
+    | 是否開啟頁面的面包屑導航
+    |
     */
     'enable_default_breadcrumb' => true,
 
@@ -344,20 +350,26 @@ return [
     |--------------------------------------------------------------------------
     | Enable/Disable assets minify
     |--------------------------------------------------------------------------
+    |
+    |是否開啟靜態資源文件的壓縮
+    |
     */
     'minify_assets' => [
-
-        // Assets will not be minified.
+    
+        // 不需要被壓縮的文件
         'excepts' => [
-
+    
         ],
-
+    
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Enable/Disable sidebar menu search
     |--------------------------------------------------------------------------
+    |
+    | 是否要開啟側邊欄的菜單搜尋
+    |
     */
     'enable_menu_search' => true,
 
@@ -375,6 +387,9 @@ return [
     |--------------------------------------------------------------------------
     | Alert message that will displayed on top of the page.
     |--------------------------------------------------------------------------
+    |
+    | 用來設定頂部的文字提示
+    |
     */
     'top_alert' => '',
 
@@ -382,16 +397,24 @@ return [
     |--------------------------------------------------------------------------
     | The global Grid action display class.
     |--------------------------------------------------------------------------
+    |
+    | 設置數據表格的操作列顯示類
+    |
     */
-    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    // 圖形按鈕
+    'grid_action_class' => \Encore\Admin\Grid\Displayers\Actions::class,
+    // 下拉選單
+    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    // 右鍵選單
+    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
 
     /*
     |--------------------------------------------------------------------------
     | Extension Directory
     |--------------------------------------------------------------------------
     |
-    | When you use command `php artisan admin:extend` to generate extensions,
-    | the extension files will be generated in this directory.
+    | 如果你要運行`php artisan admin:extend`命令來開發擴展，需要設定這一項，來存放你的擴展文件
+    |
     */
     'extension_dir' => app_path('Admin/Extensions'),
 
@@ -400,8 +423,7 @@ return [
     | Settings for extensions.
     |--------------------------------------------------------------------------
     |
-    | You can find all available extensions here
-    | https://github.com/laravel-admin-extensions.
+    | 每一個laravel-admin擴展對應的設定，都寫在這下面，擴展可以參考 https://github.com/laravel-admin-extensions
     |
     */
     'extensions' => [
