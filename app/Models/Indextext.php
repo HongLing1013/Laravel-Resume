@@ -12,4 +12,5 @@ class Indextext extends Model
     protected $table = 'indextext';
     protected $primaryKey = 'id';
     public $timetamps = true;
+    
 }

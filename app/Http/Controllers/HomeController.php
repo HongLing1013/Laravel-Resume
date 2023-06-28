@@ -15,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $menus = Menu::all();
-        $indextext = Indextext::all();
+        $indextext = Indextext::where('id' , 1)->first();
 
         return view('index', [ 'menus' => $menus , 'indexText' => $indextext ]);
     }

@@ -1,12 +1,10 @@
-
-
 @extends('layouts.home')
 
 @section('readMe')
-    <h1><a href="/">Emily Jones</a></h1>
+    <h1><a href="/">{{$indexText->title}}</a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
     <!-- <a href="index.html" class="mr-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a> -->
-    <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
+    <h2>{!! $indexText->content !!}</h2>
 @endsection
 
 @section('social')
