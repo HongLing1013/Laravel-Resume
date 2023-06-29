@@ -26,11 +26,22 @@ class MenuController extends AdminController
     {
         $grid = new Grid(new Menu());
 
-        $grid->column('id', __('Id'))->sortable();
-        $grid->column('title', __('選單名稱'))->sortable();
-        $grid->column('content', __('選單說明'))->sortable();
-        $grid->column('created_at', __('創建時間'))->sortable();
-        $grid->column('updated_at', __('更新時間'))->sortable();
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * ============ */
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+
+        $grid->column('id', __('Id'))->sortable()->hide();
+        $grid->column('title', __('名稱'))->sortable();
+        $grid->column('content', __('內容'))->help("選單名稱下方的文字")->sortable();
+        $grid->column('created_at', __('創建時間'))->sortable()->hide();
+        $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
+                return date('Y-m-d H:i:s' , strtotime($updated_at));
+            })->sortable();
 
         return $grid;
     }

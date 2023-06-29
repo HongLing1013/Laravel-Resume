@@ -427,6 +427,10 @@ return [
     |
     */
     'extensions' => [
+    
+        'media-manager' => [
+            'disk' => 'public'   // 指向要管理的硬碟
+        ],
 
     ],
 ];
