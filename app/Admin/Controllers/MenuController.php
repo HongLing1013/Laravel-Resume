@@ -57,10 +57,10 @@ class MenuController extends AdminController
         $show = new Show(Menu::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('title', __('Title'));
-        $show->field('content', __('Content'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('title', __('名稱'));
+        $show->field('content', __('內容'));
+        $show->field('created_at', __('創建時間'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -74,8 +74,26 @@ class MenuController extends AdminController
     {
         $form = new Form(new Menu());
 
-        $form->text('title', __('Title'));
-        $form->text('content', __('Content'));
+        /* ===================
+         * 編輯時進用刪除按鈕
+         * 編輯時進用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+        
+
+        $form->text('title', __('名稱'));
+        $form->text('content', __('內容'));
 
         return $form;
     }
