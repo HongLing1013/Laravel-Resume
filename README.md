@@ -206,6 +206,14 @@ $grid->actions(function (Grid\Displayers\Actions $actions) {
 
 ## Show
 
+- 資料庫內存有html不想要顯示成字串的話
+    (例如有<img>想直接顯示圖片)
+```php
+$show->field('image', __('Image'))->unescape()->as(function ($image) {
+    return "<img src='{$image}' />";
+});
+```
+
 ## From
 
 - 禁用按鈕

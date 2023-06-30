@@ -11,4 +11,6 @@ class Social extends Model
 
     protected $fillable = [ 'href' , 'name' , 'icon' ];
     
+    public $timetamps = true;
+
 }
