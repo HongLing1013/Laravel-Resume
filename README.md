@@ -184,3 +184,39 @@ return view('頁面名稱', ['blade使用的變數名稱' => $controller使用�
 ```php
 $router->resource('auth/frontend-menu', MenuController::class);
 ```
+
+## Grid
+
+- 禁用按鈕
+```php
+$grid->disableActions();
+$grid->disablePagination();
+$grid->disableCreateButton();
+$grid->disableFilter();
+$grid->disableRowSelector();
+$grid->disableColumnSelector();
+$grid->disableTools();
+$grid->disableExport();
+$grid->actions(function (Grid\Displayers\Actions $actions) {
+    $actions->disableView();
+    $actions->disableEdit();
+    $actions->disableDelete();
+});
+```
+
+## Show
+
+## From
+
+- 禁用按鈕
+```php
+$form->disableEditingCheck();
+$form->disableCreatingCheck();
+$form->disableViewCheck();
+
+$form->tools(function (Form\Tools $tools) {
+    $tools->disableDelete();
+    $tools->disableView();
+    $tools->disableList();
+});
+```

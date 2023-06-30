@@ -30,6 +30,7 @@ class IndextextController extends AdminController
          * 禁用篩選按鈕
          * 禁用導出按鈕
          * 禁用行選擇器
+         * 禁用列選擇器
          * 禁用新增按鈕
          * 禁用分頁功能
          * 禁用删除功能
@@ -37,6 +38,7 @@ class IndextextController extends AdminController
         $grid->disableFilter();
         $grid->disableExport();
         $grid->disableRowSelector();
+        $grid->disableColumnSelector();
         $grid->disableCreateButton();
         $grid->disablePagination();
         $grid->actions(function ($actions) {
