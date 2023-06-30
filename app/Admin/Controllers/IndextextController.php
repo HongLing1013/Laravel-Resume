@@ -44,8 +44,8 @@ class IndextextController extends AdminController
         });
 
         $grid->column('id', __('Id'))->hide();
-        $grid->column('title', __('Title'));
-        $grid->column('content', __('Content'));
+        $grid->column('title', __('標題'));
+        $grid->column('content', __('內容'));
         $grid->column('created_at', __('創建時間'))->hide();
         $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
             return date('Y-m-d H:i:s' , strtotime($updated_at));
