@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Indextext;
 use App\Models\Menu;
+use App\Models\Social;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +17,9 @@ class HomeController extends Controller
     {
         $menus = Menu::all();
         $indextext = Indextext::where('id' , 1)->first();
+        $social = Social::all();
 
-        return view('index', [ 'menus' => $menus , 'indexText' => $indextext ]);
+        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social ]);
     }
 
     /**
