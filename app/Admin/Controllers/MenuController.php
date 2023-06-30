@@ -75,8 +75,8 @@ class MenuController extends AdminController
         $form = new Form(new Menu());
 
         /* ===================
-         * 編輯時進用刪除按鈕
-         * 編輯時進用顯示按鈕
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
          * 禁用查看 checkbox
          * 禁用繼續創建 checkbox
          * 禁用繼續編輯 checkbox
