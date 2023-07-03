@@ -132,6 +132,37 @@ return view('blade的檔案名稱');
 - 當創建資料表後可執行下面指令還原資料表，確保創建與還原的程式碼都可正常運行
     ```php artisan migrate:rollback```
 
+#### 創建一個關聯表
+- 使用 $table->foreign()方法設定外鍵關聯
+    references()填寫對應外鍵
+    on()為對應的資料表
+    ```php
+    Schema::create('user_favorite', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('website_id');
+        $table->foreign('website_id')->references('id')->on('website');
+        $table->timestamps();
+    });
+    ```
+
+#### 紀錄被刪除時自訂處理方式
+
+- 主鍵資料表中記錄被刪除時，該主鍵的外鍵資料表相關記錄也會自動刪除
+    ```onDelete('cascade')```
+- 主鍵資料表中記錄被刪除時，該主鍵的外鍵資料表中如存在相關記錄，刪除將中止，除非相關的記錄被刪除
+    ```onDelete('restrict')```
+- 主鍵資料表中記錄被刪除時，該主鍵的外鍵資料表的記錄中，外鍵值將被設置為null。
+    ```onDelete('set null')```
+- 主鍵資料表中記錄被刪除時，該主鍵關聯的外鍵資料表中存在相關的記錄，刪除操作將被阻止。
+    ```onDelete('no action')```
+
+#### 刪除外鍵
+
+- 當執行 down 還原資料表時，如果該表為關聯表會出現錯誤，故要先移除外鍵
+```php
+$table->DropForeign(['category_id']);
+```
+
 ## Model
 
 - 設定允許賦值的參數
