@@ -144,6 +144,13 @@ return view('blade的檔案名稱');
         $table->timestamps();
     });
     ```
+- 或者使用 constrained('資料表名') 方法創建關聯
+    ```php
+    Schema::create('post', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained('post_user');
+    });
+    ```
 
 #### 紀錄被刪除時自訂處理方式
 
