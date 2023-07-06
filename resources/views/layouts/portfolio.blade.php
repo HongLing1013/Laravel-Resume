@@ -2,17 +2,17 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>{{$tagName}}</h2>
-        <p>{{$tagText}}</p>
+        <h2>{{ $tagName }}</h2>
+        <p>{{ $tagText }}</p>
       </div>
 
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+              <li data-filter="*" class="filter-active">All</li>
+            @foreach ($categories as $category)
+              <li data-filter=".filter-{{ strtolower($category->name) }}">{{ $category->name }}</li>
+            @endforeach
           </ul>
         </div>
       </div>
