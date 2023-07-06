@@ -13,6 +13,6 @@ class PortfolioCategory extends Model
 
     public function portfolio()
     {
-        return $this->hasMany(Portfolio::class , 'pcid');
+        return $this->hasMany(Portfolio::class , 'pcid')->orderBy('created_at' , 'desc');
     }
 }
