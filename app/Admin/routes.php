@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\PortfolioCategory;
 use Illuminate\Routing\Router;
 
 Admin::routes();
@@ -19,5 +20,7 @@ Route::group([
     $router->resource('auth/admin-text', IndextextController::class);
     /* 社群連結 */
     $router->resource('auth/social', SocialController::class);
+    /* 作品分類 */
+    $router->resource('auth/portfolio-category', PortfolioCategoryController::class);
 
 });
