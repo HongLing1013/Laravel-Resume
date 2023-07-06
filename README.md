@@ -172,9 +172,88 @@ $table->DropForeign(['category_id']);
 
 ## Model
 
+#### 屬性設定
+
 - 設定允許賦值的參數
 ```php
 protected $fillable = ['欄位名稱'];
+```
+
+#### 關聯設定
+
+- 一對一關聯 : 
+```php
+// User Model - 一個 User 對象只能擁有一個 HealthInsurance 對象
+class User extends Model
+{
+    public function healthInsurance()
+    {
+        return $this->hasOne(HealthInsurance::class);
+        // 另一種寫法
+        // return $this->hasOne('App\Models\HealthInsurance');
+    }
+}
+
+// HealthInsurance Model - 一個 HealthInsurance 對象必須歸屬於一個 User 對象
+class HealthInsurance extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+        // 另一種寫法
+        // return $this->belongsTo('App\Models\User');
+    }
+}
+```
+
+- 一對多關聯 : 一個人可以有多個手機號碼
+```php
+// User Model - 一個 User 對象可以有多個 PhoneNum 對象
+class User extends Model
+{
+    public function phoneNum()
+    {
+        return $this->hasMany(PhoneNum::class);
+        // 另一種寫法
+        // return $this->hasMany('App\Models\PhoneNum');
+    }
+}
+
+// PhoneNum Model - 一個 PhoneNum 對象必須歸屬於一個 User 對象
+class PhoneNum extends Model
+{
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+        // 另一種寫法
+        // return $this->belongsTo('App\Models\User');
+    }
+}
+```
+
+- 多對多關聯 : 一個用戶可以有多個角色，多個角色也可分配給多個用戶
+```php
+// User Model - 一個 User 對象可以有多個 Role 對象
+class User extends Model
+{
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+        // 另一種寫法
+        // return $this->belongsToMany('App\\Role');
+    }
+}
+
+// Role Model - 一個 Role 對象可以屬於多個 User 對象
+class Role extends Model
+{
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+        // 另一種寫法
+        // return $this->belongsToMany('App\\User');
+    }
+}
 ```
 
 ## Controller
