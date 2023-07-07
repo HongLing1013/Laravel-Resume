@@ -25,14 +25,41 @@ class PortfolioController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Portfolio());
+        $pcidMap = [ '1' => 'app' , '2' => 'card' , '3' => 'web' ]; 
+
+        /* ===============
+         * 禁用匯出按鈕
+         *    列選擇器
+         *    搜尋常態性開啟
+         * =============== */
+        $grid->disableExport()
+             ->disableColumnSelector()
+             ->expandFilter();
+
+        /* ===============
+         * 搜尋列 -
+         *      分兩行顯示 
+         * =============== */
+        $grid->filter(function ($filter) use ($pcidMap) {
+            $filter->column(1/2 , function ($filter) use($pcidMap){ //左
+                $filter->like('text', __('標題'));
+                $filter->equal('pcid', __('分類'))->select ($pcidMap);
+            });
+            $filter->column(1/2 , function ($filter) { //右
+                $filter->between('created_at', '創建時間')->datetime();
+                $filter->between('updated_at', '更新時間')->datetime();
+            });
+        });
 
         $grid->column('id', __('Id'))->hide();
-        $grid->column('pcid', __('分類'));
+        $grid->column('portfolioCategory.name', __('分類'))->sortable();
         $grid->column('text', __('標題'));
         $grid->column('image', __('圖片連結'));
         $grid->column('href', __('網址'));
-        $grid->column('created_at', __('創建時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('創建時間'))->hide();
+        $grid->column('updated_at', __('更新時間'))->display(function($updated_at){
+            return date('Y-m-d H:i:s' , strtotime($updated_at));
+        })->sortable();
 
         return $grid;
     }
@@ -66,6 +93,23 @@ class PortfolioController extends AdminController
     protected function form()
     {
         $form = new Form(new Portfolio());
+
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
 
         $form->number('pcid', __('分類'));
         $form->text('text', __('標題'));
