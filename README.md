@@ -345,3 +345,14 @@ $form->tools(function (Form\Tools $tools) {
     $tools->disableList();
 });
 ```
+
+- 判斷新增或編輯
+```php
+if($form->isCreating()){
+    // 新增的邏輯
+}
+
+if($form->isEditing()){
+    // 編輯時的邏輯
+} 
+```
