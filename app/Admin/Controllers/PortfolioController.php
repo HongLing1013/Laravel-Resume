@@ -77,7 +77,7 @@ class PortfolioController extends AdminController
         $show->field('id', __('Id'));
         $show->field('pcid', __('分類'));
         $show->field('text', __('標題'));
-        $show->field('image', __('圖片'));
+        $show->field('image', __('圖片'))->image();
         $show->field('href', __('網址'));
         $show->field('created_at', __('創建時間'));
         $show->field('updated_at', __('更新時間'));
