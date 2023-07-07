@@ -321,6 +321,18 @@ $grid->actions(function (Grid\Displayers\Actions $actions) {
 });
 ```
 
+- 搜尋列分兩列
+```php
+$grid->filter(function ($filter) {
+    $filter->column(1/2 , function ($filter) {
+        //左
+    });
+    $filter->column(1/2 , function ($filter) { 
+        //右
+    });
+});
+```
+
 ## Show
 
 - 資料庫內存有html不想要顯示成字串的話
