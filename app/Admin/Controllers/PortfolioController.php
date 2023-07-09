@@ -54,7 +54,9 @@ class PortfolioController extends AdminController
         $grid->column('id', __('Id'))->hide();
         $grid->column('portfolioCategory.name', __('分類'))->sortable();
         $grid->column('text', __('標題'));
-        $grid->column('image', __('圖片連結'));
+        $grid->column('image', __('圖片連結'))->display(function ($content) {
+            return $content ? "<img src='{$content}' style='width:200px;height:150px'></img>" : '';
+        });
         $grid->column('href', __('網址'));
         $grid->column('created_at', __('創建時間'))->hide();
         $grid->column('updated_at', __('更新時間'))->display(function($updated_at){
