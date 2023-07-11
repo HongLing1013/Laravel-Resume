@@ -21,6 +21,7 @@
       @include('layouts.' . $menu->title , ['tagName' => $menu->title , 'tagText' => $menu->content])
     </section>
   @endforeach
+  @include('layouts.js')
 @endsection
 
 @section('footer')
