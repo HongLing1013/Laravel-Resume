@@ -33,7 +33,7 @@ class ServiceController extends AdminController
          * =============== */
         $grid->disableExport()
              ->disableColumnSelector();
-             
+
         /* ============
          * 禁用篩選按鈕
          * 禁用導出按鈕
@@ -82,6 +82,23 @@ class ServiceController extends AdminController
     protected function form()
     {
         $form = new Form(new Service());
+
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
 
         $form->text('icon', __('Icon'));
         $form->text('title', __('標題'));
