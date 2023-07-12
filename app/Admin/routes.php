@@ -24,5 +24,7 @@ Route::group([
     $router->resource('auth/portfolio-category', PortfolioCategoryController::class);
     /* 作品列表 */
     $router->resource('auth/portfolio', PortfolioController::class);
+    /* 服務列表 */
+    $router->resource('auth/service', ServiceController::class);
 
 });
