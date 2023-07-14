@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: resume
--- Generation Time: 2023-07-10 10:04:22.2270
+-- Generation Time: 2023-07-14 13:27:47.2560
 -- -------------------------------------------------------------
 
 
@@ -29,7 +29,7 @@ CREATE TABLE `admin_menu` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `admin_operation_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -42,7 +42,7 @@ CREATE TABLE `admin_operation_log` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `admin_operation_log_user_id_index` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=384 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=406 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `admin_permissions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -148,7 +148,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -194,6 +194,14 @@ CREATE TABLE `portfolios` (
   CONSTRAINT `portfolios_pcid_foreign` FOREIGN KEY (`pcid`) REFERENCES `portfolio_categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `resume_categories` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `services` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -228,19 +236,20 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `permission`, `created_at`, `updated_at`) VALUES
-(1, 0, 7, '首頁', 'fa-bar-chart', '/', NULL, NULL, '2023-07-07 04:23:53'),
-(2, 0, 8, '管理', 'fa-tasks', NULL, NULL, NULL, '2023-07-07 04:23:53'),
-(3, 2, 9, '使用者', 'fa-users', 'auth/users', NULL, NULL, '2023-07-07 04:23:53'),
-(4, 2, 10, '角色', 'fa-user', 'auth/roles', NULL, NULL, '2023-07-07 04:23:53'),
-(5, 2, 11, '權限', 'fa-ban', 'auth/permissions', NULL, NULL, '2023-07-07 04:23:53'),
-(6, 2, 12, '選單', 'fa-bars', 'auth/menu', NULL, NULL, '2023-07-07 04:23:53'),
-(7, 2, 13, '紀錄', 'fa-history', 'auth/logs', NULL, NULL, '2023-07-07 04:23:53'),
+(1, 0, 8, '首頁', 'fa-bar-chart', '/', NULL, NULL, '2023-07-12 04:51:14'),
+(2, 0, 9, '管理', 'fa-tasks', NULL, NULL, NULL, '2023-07-12 04:51:14'),
+(3, 2, 10, '使用者', 'fa-users', 'auth/users', NULL, NULL, '2023-07-12 04:51:14'),
+(4, 2, 11, '角色', 'fa-user', 'auth/roles', NULL, NULL, '2023-07-12 04:51:14'),
+(5, 2, 12, '權限', 'fa-ban', 'auth/permissions', NULL, NULL, '2023-07-12 04:51:14'),
+(6, 2, 13, '選單', 'fa-bars', 'auth/menu', NULL, NULL, '2023-07-12 04:51:14'),
+(7, 2, 14, '紀錄', 'fa-history', 'auth/logs', NULL, NULL, '2023-07-12 04:51:14'),
 (8, 11, 2, '主選單', 'fa-bars', 'auth/frontend-menu', '*', '2023-06-19 05:31:18', '2023-07-06 08:28:13'),
 (9, 11, 3, '首頁文案', 'fa-code', 'auth/admin-text', '*', '2023-06-27 05:07:39', '2023-07-06 08:28:13'),
 (10, 11, 4, '首頁社群', 'fa-angellist', 'auth/social', '*', '2023-06-30 10:10:11', '2023-07-06 08:28:13'),
 (11, 0, 1, '前台', 'fa-asterisk', NULL, '*', '2023-06-30 10:35:41', '2023-07-06 08:28:31'),
 (12, 11, 5, '作品分類', 'fa-bars', 'auth/portfolio-category', '*', '2023-07-06 08:28:03', '2023-07-06 08:28:13'),
-(13, 11, 6, '作品列表', 'fa-diamond', 'auth/portfolio', '*', '2023-07-07 04:23:47', '2023-07-07 04:23:53');
+(13, 11, 6, '作品列表', 'fa-diamond', 'auth/portfolio', '*', '2023-07-07 04:23:47', '2023-07-07 04:23:53'),
+(14, 11, 7, '服務列表', 'fa-connectdevelop', 'auth/service', '*', '2023-07-12 04:50:15', '2023-07-12 04:51:14');
 
 INSERT INTO `admin_operation_log` (`id`, `user_id`, `path`, `method`, `ip`, `input`, `created_at`, `updated_at`) VALUES
 (1, 1, 'admin', 'GET', '::1', '[]', '2023-05-25 05:40:40', '2023-05-25 05:40:40'),
@@ -625,7 +634,29 @@ INSERT INTO `admin_operation_log` (`id`, `user_id`, `path`, `method`, `ip`, `inp
 (380, 1, 'admin/auth/portfolio', 'GET', '::1', '[]', '2023-07-09 05:47:24', '2023-07-09 05:47:24'),
 (381, 1, 'admin/auth/portfolio', 'GET', '::1', '[]', '2023-07-09 05:47:41', '2023-07-09 05:47:41'),
 (382, 1, 'admin/auth/portfolio', 'GET', '::1', '[]', '2023-07-09 05:47:48', '2023-07-09 05:47:48'),
-(383, 1, 'admin/auth/portfolio', 'GET', '::1', '[]', '2023-07-09 05:48:28', '2023-07-09 05:48:28');
+(383, 1, 'admin/auth/portfolio', 'GET', '::1', '[]', '2023-07-09 05:48:28', '2023-07-09 05:48:28'),
+(384, 1, 'admin', 'GET', '::1', '[]', '2023-07-11 05:10:32', '2023-07-11 05:10:32'),
+(385, 1, 'admin/auth/frontend-menu', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-11 05:10:37', '2023-07-11 05:10:37'),
+(386, 1, 'admin', 'GET', '::1', '[]', '2023-07-12 04:47:55', '2023-07-12 04:47:55'),
+(387, 1, 'admin/auth/portfolio', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:48:25', '2023-07-12 04:48:25'),
+(388, 1, 'admin/auth/menu', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:48:40', '2023-07-12 04:48:40'),
+(389, 1, 'admin/auth/menu', 'POST', '::1', '{\"parent_id\":\"11\",\"title\":\"\\u670d\\u52d9\\u5217\\u8868\",\"icon\":\"fa-connectdevelop\",\"uri\":\"auth\\/service\",\"roles\":[\"1\",null],\"permission\":\"*\",\"_token\":\"eS6788NUaXjh4Q21pCjMliRSQXZsTjnX4xkGqPdh\"}', '2023-07-12 04:50:14', '2023-07-12 04:50:14'),
+(390, 1, 'admin/auth/menu', 'GET', '::1', '[]', '2023-07-12 04:50:15', '2023-07-12 04:50:15'),
+(391, 1, 'admin/auth/menu', 'GET', '::1', '[]', '2023-07-12 04:50:58', '2023-07-12 04:50:58'),
+(392, 1, 'admin/auth/portfolio', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:51:00', '2023-07-12 04:51:00'),
+(393, 1, 'admin/auth/menu', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:51:05', '2023-07-12 04:51:05'),
+(394, 1, 'admin/auth/menu', 'POST', '::1', '{\"_token\":\"eS6788NUaXjh4Q21pCjMliRSQXZsTjnX4xkGqPdh\",\"_order\":\"[{\\\"id\\\":11,\\\"children\\\":[{\\\"id\\\":8},{\\\"id\\\":9},{\\\"id\\\":10},{\\\"id\\\":12},{\\\"id\\\":13},{\\\"id\\\":14}]},{\\\"id\\\":1},{\\\"id\\\":2,\\\"children\\\":[{\\\"id\\\":3},{\\\"id\\\":4},{\\\"id\\\":5},{\\\"id\\\":6},{\\\"id\\\":7}]}]\"}', '2023-07-12 04:51:14', '2023-07-12 04:51:14'),
+(395, 1, 'admin/auth/menu', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:51:14', '2023-07-12 04:51:14'),
+(396, 1, 'admin/auth/menu', 'GET', '::1', '[]', '2023-07-12 04:51:17', '2023-07-12 04:51:17'),
+(397, 1, 'admin/auth/service', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:51:19', '2023-07-12 04:51:19'),
+(398, 1, 'admin/auth/service', 'GET', '::1', '[]', '2023-07-12 04:51:58', '2023-07-12 04:51:58'),
+(399, 1, 'admin/auth/service', 'GET', '::1', '[]', '2023-07-12 04:52:00', '2023-07-12 04:52:00'),
+(400, 1, 'admin/auth/service', 'GET', '::1', '[]', '2023-07-12 04:52:38', '2023-07-12 04:52:38'),
+(401, 1, 'admin/auth/service/11', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:53:55', '2023-07-12 04:53:55'),
+(402, 1, 'admin/auth/service/11/edit', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:53:59', '2023-07-12 04:53:59'),
+(403, 1, 'admin/auth/service/11/edit', 'GET', '::1', '[]', '2023-07-12 04:54:15', '2023-07-12 04:54:15'),
+(404, 1, 'admin/auth/service/11', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:58:12', '2023-07-12 04:58:12'),
+(405, 1, 'admin/auth/service/11/edit', 'GET', '::1', '{\"_pjax\":\"#pjax-container\"}', '2023-07-12 04:58:13', '2023-07-12 04:58:13');
 
 INSERT INTO `admin_permissions` (`id`, `name`, `slug`, `http_method`, `http_path`, `created_at`, `updated_at`) VALUES
 (1, 'All permission', '*', '', '*', NULL, NULL),
@@ -641,7 +672,8 @@ INSERT INTO `admin_role_menu` (`role_id`, `menu_id`, `created_at`, `updated_at`)
 (1, 10, NULL, NULL),
 (1, 11, NULL, NULL),
 (1, 12, NULL, NULL),
-(1, 13, NULL, NULL);
+(1, 13, NULL, NULL),
+(1, 14, NULL, NULL);
 
 INSERT INTO `admin_role_permissions` (`role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
 (1, 1, NULL, NULL);
@@ -678,7 +710,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2023_06_30_095346_create_socials_table', 4),
 (15, '2023_07_03_061002_create_portfolio_categories_table', 4),
 (16, '2023_07_03_061303_create_portfolios_table', 4),
-(18, '2023_07_10_002236_create_services_table', 5);
+(18, '2023_07_10_002236_create_services_table', 5),
+(20, '2023_07_13_045917_create_resume_categories_table', 6),
+(21, '2023_07_13_050725_create_resumes_table', 7),
+(23, '2023_07_14_052200_create_resume_category_table', 8);
 
 INSERT INTO `portfolio_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'app', NULL, NULL),
@@ -695,6 +730,11 @@ INSERT INTO `portfolios` (`id`, `pcid`, `text`, `image`, `href`, `created_at`, `
 (8, 2, 'Card 1', '/assets/img/portfolio/portfolio-7.jpg', 'portfolio-details.html', NULL, NULL),
 (9, 2, 'Card 3', '/assets/img/portfolio/portfolio-8.jpg', 'portfolio-details.html', NULL, NULL),
 (10, 3, 'Web 3', '/assets/img/portfolio/portfolio-9.jpg', 'portfolio-details.html', NULL, NULL);
+
+INSERT INTO `resume_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Sumary', NULL, NULL),
+(2, 'Education', NULL, NULL),
+(3, 'Professional Experience', NULL, NULL);
 
 INSERT INTO `services` (`id`, `icon`, `title`, `content`, `created_at`, `updated_at`) VALUES
 (11, 'bx bxl-dribbble', 'Lorem Ipsum', 'Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi', NULL, NULL),
