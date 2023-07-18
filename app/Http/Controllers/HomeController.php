@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Indextext;
 use App\Models\Menu;
 use App\Models\PortfolioCategory;
+use App\Models\ResumeCategory;
 use App\Models\Service;
 use App\Models\Social;
 use Illuminate\Http\Request;
@@ -22,8 +23,9 @@ class HomeController extends Controller
         $social = Social::all();
         $categories = PortfolioCategory::with('portfolio')->get();
         $service = Service::all();
+        $resumes = ResumeCategory::with('resumeEduction', 'resumeExperience', 'resumeSumary')->get();
 
-        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service ]);
+        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes ]);
     }
 
     /**
