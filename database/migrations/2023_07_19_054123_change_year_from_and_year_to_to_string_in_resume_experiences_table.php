@@ -27,8 +27,9 @@ class ChangeYearFromAndYearToToStringInResumeExperiencesTable extends Migration
     public function down()
     {
         Schema::table('resume_experiences', function (Blueprint $table) {
-            $table->timestamp('year_from')->change();
-            $table->timestamp('year_to')->change();
+            $table->dateTimeTz('year_from')->change();
+            $table->dateTimeTz('year_to')->change();
         });
     }
+    
 }
