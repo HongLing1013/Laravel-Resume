@@ -152,6 +152,15 @@ return view('blade的檔案名稱');
     });
     ```
 
+#### 修改一個關聯表
+- 使用 change() 方法修改欄位
+    ```php
+    Schema::table('resume_experiences', function (Blueprint $table) {
+        $table->string('year_from')->change();
+        $table->string('year_to')->change();
+    });
+    ```
+
 #### 紀錄被刪除時自訂處理方式
 
 - 主鍵資料表中記錄被刪除時，該主鍵的外鍵資料表相關記錄也會自動刪除
