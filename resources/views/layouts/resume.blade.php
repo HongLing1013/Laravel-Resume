@@ -35,19 +35,20 @@
                   @break
               @case('Education')
 
-              <h3 class="resume-title">{{ $resume->name }}</h3>
-              <div class="resume-item">
-                <h4>Master of Fine Arts &amp; Graphic Design</h4>
-                <h5>2015 - 2016</h5>
-                <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-              </div>
-              <div class="resume-item">
-                <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-                <h5>2010 - 2014</h5>
-                <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-                <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-              </div>
+                <h3 class="resume-title">{{ $resume->name }}</h3>
+
+                @if(!empty($resume->resumeEduction))
+                  @foreach($resume->resumeEduction as $education)
+
+                    <div class="resume-item">
+                      <h4>{{ $education->degree }}</h4>
+                      <h5>{{ \Carbon\Carbon::parse($education->year_from)->format('Y') }} - {{ \Carbon\Carbon::parse($education->year_to)->format('Y') }}</h5>
+                      <p>{{ $education->institution }}</p>
+                      <p>{{ $education->description }}</p>
+                    </div>
+
+                  @endforeach
+                @endif
 
               </div>  <!-- col-lg-6 -->  
                   @break
