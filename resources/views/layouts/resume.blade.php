@@ -19,7 +19,7 @@
                   @if(!empty($resume->resumeSumary))
                     @foreach($resume->resumeSumary as $summary)
                       <h4>{{ $summary->name }}</h4>
-                      <p>{{ $summary->summary }}</p>
+                      <p>{!! $summary->summary !!}</p>
                       <p>
                       <ul>
                         <li>{{ $summary->address }}</li>
