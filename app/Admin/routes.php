@@ -30,5 +30,7 @@ Route::group([
     $router->resource('resume-eductions', ResumeEductionController::class);
     /* 工作經歷列表 */
     $router->resource('resume-experiences', ResumeExperienceController::class);
+    /* 經歷簡介列表 */
+    $router->resource('resume-experiences', ResumeExperienceController::class);
 
 });
