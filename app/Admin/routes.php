@@ -14,24 +14,27 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('home');
 
-    /* 前台選單 */
-    $router->resource('auth/frontend-menu', MenuController::class);
-    /* 首頁文字 */
-    $router->resource('auth/admin-text', IndextextController::class);
-    /* 社群連結 */
-    $router->resource('auth/social', SocialController::class);
-    /* 作品分類 */
-    $router->resource('auth/portfolio-category', PortfolioCategoryController::class);
-    /* 作品列表 */
-    $router->resource('auth/portfolio', PortfolioController::class);
-    /* 服務列表 */
-    $router->resource('auth/service', ServiceController::class);
-    /* 經歷簡介 */
-    $router->resource('resume-sumaries', ResumeSumaryController::class);
-    /* 教育背景 */
-    $router->resource('auth/resume-eductions', ResumeEductionController::class);
-    /* 工作經歷 */
-    $router->resource('auth/resume-experiences', ResumeExperienceController::class);
+    $router->group(['prefix' => 'auth'], function ($router){
+        /* 前台選單 */
+        $router->resource('frontend-menu', MenuController::class);
+        /* 首頁文字 */
+        $router->resource('admin-text', IndextextController::class);
+        /* 社群連結 */
+        $router->resource('social', SocialController::class);
+        /* 作品分類 */
+        $router->resource('portfolio-category', PortfolioCategoryController::class);
+        /* 作品列表 */
+        $router->resource('portfolio', PortfolioController::class);
+        /* 服務列表 */
+        $router->resource('service', ServiceController::class);
+        /* 經歷簡介 */
+        $router->resource('resume-sumaries', ResumeSumaryController::class);
+        /* 教育背景 */
+        $router->resource('resume-eductions', ResumeEductionController::class);
+        /* 工作經歷 */
+        $router->resource('resume-experiences', ResumeExperienceController::class);
+    });
+
 
 
 });
