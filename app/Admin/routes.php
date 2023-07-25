@@ -27,10 +27,10 @@ Route::group([
     /* 服務列表 */
     $router->resource('auth/service', ServiceController::class);
     /* 學歷列表 */
-    $router->resource('resume-eductions', ResumeEductionController::class);
+    $router->resource('auth/resume-eductions', ResumeEductionController::class);
     /* 工作經歷列表 */
-    $router->resource('resume-experiences', ResumeExperienceController::class);
+    $router->resource('auth/resume-experiences', ResumeExperienceController::class);
     /* 經歷簡介列表 */
-    $router->resource('resume-experiences', ResumeExperienceController::class);
+    $router->resource('auth/resume-experiences', ResumeExperienceController::class);
 
 });
