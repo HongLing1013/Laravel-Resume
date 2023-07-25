@@ -26,5 +26,7 @@ Route::group([
     $router->resource('auth/portfolio', PortfolioController::class);
     /* 服務列表 */
     $router->resource('auth/service', ServiceController::class);
+    /* 學歷列表 */
+    $router->resource('resume-eductions', ResumeEductionController::class);
 
 });
