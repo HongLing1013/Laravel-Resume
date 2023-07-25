@@ -310,6 +310,14 @@ return view('頁面名稱', ['blade使用的變數名稱' => $controller使用�
 ```php
 $router->resource('auth/frontend-menu', MenuController::class);
 ```
+- 可將前綴相同的部分進行群組，例如 admin/dashboard、admin/users、admin/posts 可群組寫成下面範例
+```php
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/dashboard', 'AdminController@dashboard');
+    Route::get('/users', 'AdminController@users');
+    Route::get('/posts', 'AdminController@posts');
+});
+```
 
 ## Grid
 
