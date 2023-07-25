@@ -26,11 +26,12 @@ Route::group([
     $router->resource('auth/portfolio', PortfolioController::class);
     /* 服務列表 */
     $router->resource('auth/service', ServiceController::class);
-    /* 學歷列表 */
+    /* 經歷簡介 */
+    $router->resource('auth/resume-experiences', ResumeExperienceController::class);
+    /* 教育背景 */
     $router->resource('auth/resume-eductions', ResumeEductionController::class);
-    /* 工作經歷列表 */
+    /* 工作經歷 */
     $router->resource('auth/resume-experiences', ResumeExperienceController::class);
-    /* 經歷簡介列表 */
-    $router->resource('auth/resume-experiences', ResumeExperienceController::class);
+
 
 });
