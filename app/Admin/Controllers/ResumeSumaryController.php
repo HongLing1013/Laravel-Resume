@@ -65,12 +65,12 @@ class ResumeSumaryController extends AdminController
     {
         $show = new Show(ResumeSumary::findOrFail($id));
 
-        $show->field('name', __('Name'));
-        $show->field('address', __('Address'));
-        $show->field('phone', __('Phone'));
+        $show->field('name', __('名字'));
+        $show->field('address', __('地址'));
+        $show->field('phone', __('電話'));
         $show->field('email', __('Email'));
-        $show->field('summary', __('Summary'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('summary', __('簡介'))->unescape();
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
