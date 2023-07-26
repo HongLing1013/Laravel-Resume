@@ -350,6 +350,13 @@ $grid->filter(function ($filter) {
 });
 ```
 
+- grid 顯示 html tag
+```php
+$grid->column('summary', __('簡介'))->display(function ($summary) {
+    return html_entity_decode(nl2br($summary));
+);
+```
+
 ## Show
 
 - 資料庫內存有html不想要顯示成字串的話
