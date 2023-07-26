@@ -385,3 +385,16 @@ if($form->isEditing()){
     // 編輯時的邏輯
 } 
 ```
+
+## CKeditor
+
+1. 安裝 ```composer require ckeditor/ckeditor```
+2. 找到 app/Admin/bootstrap.php 進行綁定
+```php
+Admin::js('https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js');
+Admin::script('CKEDITOR.replace("ckeditor");');
+```
+3. 用 attribute 方法使用
+```php
+$form->textarea('content', 'Content')->attribute(['id' => 'ckeditor']);
+```
