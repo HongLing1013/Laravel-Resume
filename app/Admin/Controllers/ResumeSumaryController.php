@@ -65,6 +65,13 @@ class ResumeSumaryController extends AdminController
     {
         $show = new Show(ResumeSumary::findOrFail($id));
 
+        /* ============
+         * 禁用刪除按鈕
+         * ============ */
+        $show->panel()->tools(function($tools) {
+            $tools->disableDelete();
+        });
+
         $show->field('name', __('名字'));
         $show->field('address', __('地址'));
         $show->field('phone', __('電話'));
