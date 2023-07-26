@@ -113,7 +113,7 @@ class ResumeSumaryController extends AdminController
         $form->text('address', __('地址'));
         $form->mobile('phone', __('電話'));
         $form->email('email', __('Email'));
-        $form->text('summary', __('簡介'));
+        $form->textarea('summary', '簡介')->attribute(['id' => 'ckeditor']);
 
         return $form;
     }

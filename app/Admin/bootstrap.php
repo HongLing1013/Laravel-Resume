@@ -19,3 +19,5 @@
  */
 
 Encore\Admin\Form::forget(['map', 'editor']);
+Admin::js('https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js');
+Admin::script('CKEDITOR.replace("ckeditor");');
