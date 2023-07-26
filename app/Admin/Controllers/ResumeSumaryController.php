@@ -49,7 +49,9 @@ class ResumeSumaryController extends AdminController
         $grid->column('address', __('地址'));
         $grid->column('phone', __('電話'));
         $grid->column('email', __('Email'));
-        $grid->column('summary', __('簡介'));
+        $grid->column('summary', __('簡介'))->display(function ($summary) {
+            return html_entity_decode(nl2br($summary));
+        });
         $grid->column('updated_at', __('更新時間'));
 
         return $grid;
