@@ -15,7 +15,7 @@ class ResumeSumaryController extends AdminController
      *
      * @var string
      */
-    protected $title = 'ResumeSumary';
+    protected $title = '經歷簡介';
 
     /**
      * Make a grid builder.
@@ -26,15 +26,31 @@ class ResumeSumaryController extends AdminController
     {
         $grid = new Grid(new ResumeSumary());
 
-        $grid->column('id', __('Id'));
-        $grid->column('rcid', __('Rcid'));
-        $grid->column('name', __('Name'));
-        $grid->column('address', __('Address'));
-        $grid->column('phone', __('Phone'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * 禁用分頁功能
+         * 禁用新增按鈕
+         * 禁用刪除按鈕
+         * ============ */
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
+        $grid->disablePagination();
+        $grid->disableCreateButton();
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableDelete();
+        });
+
+        $grid->column('name', __('名字'));
+        $grid->column('address', __('地址'));
+        $grid->column('phone', __('電話'));
         $grid->column('email', __('Email'));
-        $grid->column('summary', __('Summary'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('summary', __('簡介'));
+        $grid->column('updated_at', __('更新時間'));
 
         return $grid;
     }
@@ -49,14 +65,11 @@ class ResumeSumaryController extends AdminController
     {
         $show = new Show(ResumeSumary::findOrFail($id));
 
-        $show->field('id', __('Id'));
-        $show->field('rcid', __('Rcid'));
         $show->field('name', __('Name'));
         $show->field('address', __('Address'));
         $show->field('phone', __('Phone'));
         $show->field('email', __('Email'));
         $show->field('summary', __('Summary'));
-        $show->field('created_at', __('Created at'));
         $show->field('updated_at', __('Updated at'));
 
         return $show;
@@ -71,7 +84,6 @@ class ResumeSumaryController extends AdminController
     {
         $form = new Form(new ResumeSumary());
 
-        $form->number('rcid', __('Rcid'));
         $form->text('name', __('Name'));
         $form->text('address', __('Address'));
         $form->mobile('phone', __('Phone'));
