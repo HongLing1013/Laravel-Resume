@@ -59,14 +59,11 @@ class ResumeEductionController extends AdminController
     {
         $show = new Show(ResumeEduction::findOrFail($id));
 
-        $show->field('id', __('Id'));
-        $show->field('rcid', __('Rcid'));
         $show->field('degree', __('學歷'));
         $show->field('year_from', __('開始時間'));
         $show->field('year_to', __('結束時間'));
         $show->field('institution', __('學校名稱'));
-        $show->field('description', __('描述'));
-        $show->field('created_at', __('創建時間'));
+        $show->field('description', __('描述'))->unescape();
         $show->field('updated_at', __('更新時間'));
 
         return $show;
