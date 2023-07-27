@@ -26,14 +26,24 @@ class ResumeEductionController extends AdminController
     {
         $grid = new Grid(new ResumeEduction());
 
-        $grid->column('id', __('Id'));
-        $grid->column('rcid', __('Rcid'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * ============ */
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
+
         $grid->column('degree', __('學歷'));
         $grid->column('year_from', __('開始時間'));
         $grid->column('year_to', __('結束時間'));
         $grid->column('institution', __('學校名稱'));
-        $grid->column('description', __('描述'));
-        $grid->column('created_at', __('創建時間'));
+        $grid->column('description', __('描述'))->display(function ($description){
+            return html_entity_decode(nl2br($description));
+        });
         $grid->column('updated_at', __('更新時間'));
 
         return $grid;
