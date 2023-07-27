@@ -15,7 +15,7 @@ class ResumeEductionController extends AdminController
      *
      * @var string
      */
-    protected $title = 'ResumeEduction';
+    protected $title = '教育背景';
 
     /**
      * Make a grid builder.
@@ -28,13 +28,13 @@ class ResumeEductionController extends AdminController
 
         $grid->column('id', __('Id'));
         $grid->column('rcid', __('Rcid'));
-        $grid->column('degree', __('Degree'));
-        $grid->column('year_from', __('Year from'));
-        $grid->column('year_to', __('Year to'));
-        $grid->column('institution', __('Institution'));
-        $grid->column('description', __('Description'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('degree', __('學歷'));
+        $grid->column('year_from', __('開始時間'));
+        $grid->column('year_to', __('結束時間'));
+        $grid->column('institution', __('學校名稱'));
+        $grid->column('description', __('描述'));
+        $grid->column('created_at', __('創建時間'));
+        $grid->column('updated_at', __('更新時間'));
 
         return $grid;
     }
@@ -51,13 +51,13 @@ class ResumeEductionController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('rcid', __('Rcid'));
-        $show->field('degree', __('Degree'));
-        $show->field('year_from', __('Year from'));
-        $show->field('year_to', __('Year to'));
-        $show->field('institution', __('Institution'));
-        $show->field('description', __('Description'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('degree', __('學歷'));
+        $show->field('year_from', __('開始時間'));
+        $show->field('year_to', __('結束時間'));
+        $show->field('institution', __('學校名稱'));
+        $show->field('description', __('描述'));
+        $show->field('created_at', __('創建時間'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -72,11 +72,11 @@ class ResumeEductionController extends AdminController
         $form = new Form(new ResumeEduction());
 
         $form->number('rcid', __('Rcid'));
-        $form->text('degree', __('Degree'));
-        $form->datetime('year_from', __('Year from'))->default(date('Y-m-d H:i:s'));
-        $form->datetime('year_to', __('Year to'))->default(date('Y-m-d H:i:s'));
-        $form->text('institution', __('Institution'));
-        $form->text('description', __('Description'));
+        $form->text('degree', __('學歷'));
+        $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
+        $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
+        $form->text('institution', __('學校名稱'));
+        $form->text('description', __('描述'));
 
         return $form;
     }
