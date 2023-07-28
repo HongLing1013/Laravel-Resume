@@ -15,7 +15,7 @@ class ResumeExperienceController extends AdminController
      *
      * @var string
      */
-    protected $title = 'ResumeExperience';
+    protected $title = '工作經歷';
 
     /**
      * Make a grid builder.
@@ -26,15 +26,23 @@ class ResumeExperienceController extends AdminController
     {
         $grid = new Grid(new ResumeExperience());
 
-        $grid->column('id', __('Id'));
-        $grid->column('rcid', __('Rcid'));
-        $grid->column('job_title', __('Job title'));
-        $grid->column('year_from', __('Year from'));
-        $grid->column('year_to', __('Year to'));
-        $grid->column('company', __('Company'));
-        $grid->column('job_description', __('Job description'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * ============ */
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
+
+        $grid->column('job_title', __('職稱'));
+        $grid->column('year_from', __('開始時間'));
+        $grid->column('year_to', __('結束時間'));
+        $grid->column('company', __('工作地點'));
+        $grid->column('job_description', __('工作敘述'));
+        $grid->column('updated_at', __('更新時間'));
 
         return $grid;
     }
@@ -49,15 +57,12 @@ class ResumeExperienceController extends AdminController
     {
         $show = new Show(ResumeExperience::findOrFail($id));
 
-        $show->field('id', __('Id'));
-        $show->field('rcid', __('Rcid'));
-        $show->field('job_title', __('Job title'));
-        $show->field('year_from', __('Year from'));
-        $show->field('year_to', __('Year to'));
-        $show->field('company', __('Company'));
-        $show->field('job_description', __('Job description'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('job_title', __('職稱'));
+        $show->field('year_from', __('開始時間'));
+        $show->field('year_to', __('結束時間'));
+        $show->field('company', __('工作地點'));
+        $show->field('job_description', __('工作敘述'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -71,13 +76,12 @@ class ResumeExperienceController extends AdminController
     {
         $form = new Form(new ResumeExperience());
 
-        $form->number('rcid', __('Rcid'));
-        $form->text('job_title', __('Job title'));
-        $form->datetime('year_from', __('Year from'))->default(date('Y-m-d H:i:s'));
-        $form->datetime('year_to', __('Year to'))->default(date('Y-m-d H:i:s'));
-        $form->text('company', __('Company'));
-        $form->textarea('job_description', __('Job description'));
-
+        $form->number('rcid', __('Rcid'))->hide();
+        $form->text('job_title', __('職稱'));
+        $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
+        $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
+        $form->text('company', __('工作地點'));
+        $form->textarea('job_description', __('工作敘述'));
         return $form;
     }
 }
