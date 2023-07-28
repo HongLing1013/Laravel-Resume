@@ -113,7 +113,12 @@ class PortfolioController extends AdminController
         $form->disableCreatingCheck();
         $form->disableEditingCheck();
 
-        $form->number('pcid', __('分類'));
+        /* ========
+         * 設置變數
+         * ======== */
+        $appMap = [ 1 => 'app', 2 => 'card', 3 => 'web'];
+
+        $form->select('pcid', __('分類'))->options($appMap);
         $form->text('text', __('標題'));
         $form->image('image', __('圖片'));
         $form->text('href', __('網址'));
