@@ -27,14 +27,11 @@ class ResumeExperienceController extends AdminController
         $grid = new Grid(new ResumeExperience());
 
         /* ============
-         * 禁用篩選按鈕
          * 禁用導出按鈕
-         * 禁用行選擇器
          * 禁用列選擇器
          * ============ */
-        $grid->disableFilter();
+
         $grid->disableExport();
-        $grid->disableRowSelector();
         $grid->disableColumnSelector();
 
         $grid->column('job_title', __('職稱'));
