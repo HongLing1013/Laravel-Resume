@@ -52,7 +52,9 @@ class ResumeSumaryController extends AdminController
         $grid->column('summary', __('簡介'))->display(function ($summary) {
             return html_entity_decode(nl2br($summary));
         });
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
+            return date('Y-m-d H:i:s' , strtotime($updated_at));
+        });
 
         return $grid;
     }
