@@ -102,7 +102,7 @@ class ServiceController extends AdminController
 
         $form->text('icon', __('Icon'));
         $form->text('title', __('標題'));
-        $form->text('content', __('敘述'));
+        $form->textarea('content', '敘述')->attribute(['id' => 'ckeditor']);
 
         return $form;
     }
