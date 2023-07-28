@@ -116,7 +116,7 @@ class PortfolioController extends AdminController
         $form->number('pcid', __('分類'));
         $form->text('text', __('標題'));
         $form->image('image', __('圖片'));
-        $form->url('href', __('網址'));
+        $form->text('href', __('網址'));
 
         return $form;
     }
