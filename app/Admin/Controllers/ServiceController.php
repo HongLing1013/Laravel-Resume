@@ -48,8 +48,12 @@ class ServiceController extends AdminController
         $grid->column('icon', __('Icon'));
         $grid->column('title', __('標題'));
         $grid->column('content', __('敘述'));
-        $grid->column('created_at', __('創建時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('創建時間'))->display(function ($created_at) {
+            return date('Y-m-d H:i:s' , strtotime($created_at));
+        })->sortable();
+        $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
+            return date('Y-m-d H:i:s' , strtotime($updated_at));
+        })->sortable();
 
         return $grid;
     }
