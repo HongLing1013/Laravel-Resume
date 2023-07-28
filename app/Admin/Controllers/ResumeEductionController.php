@@ -38,13 +38,15 @@ class ResumeEductionController extends AdminController
         $grid->disableColumnSelector();
 
         $grid->column('degree', __('學歷'));
-        $grid->column('year_from', __('開始時間'));
-        $grid->column('year_to', __('結束時間'));
+        $grid->column('year_from', __('開始時間'))->sortable();
+        $grid->column('year_to', __('結束時間'))->sortable();
         $grid->column('institution', __('學校名稱'));
         $grid->column('description', __('描述'))->display(function ($description){
             return html_entity_decode(nl2br($description));
         });
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
+            return date('Y-m-d H:i:s' , strtotime($updated_at));
+        })->sortable();
 
         return $grid;
     }
@@ -78,12 +80,14 @@ class ResumeEductionController extends AdminController
     {
         $form = new Form(new ResumeEduction());
 
-        $form->number('rcid', __('Rcid'));
         $form->text('degree', __('學歷'));
         $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
         $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
         $form->text('institution', __('學校名稱'));
         $form->text('description', __('描述'));
+        if($form->isCreating()){
+            $form->hidden('rcid')->default('2');
+        }
 
         return $form;
     }

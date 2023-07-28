@@ -15,4 +15,5 @@ class ResumeEduction extends Model
     {
         return $this->belongsTo(ResumeCategory::class , 'rcid');
     }
+    
 }
