@@ -97,7 +97,6 @@ class ResumeEductionController extends AdminController
                     $form->radio('year_to', __(''))->value('');
                 });
         }
-        $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
         $form->text('institution', __('學校名稱'));
         $form->text('description', __('描述'));
         if($form->isCreating()){
