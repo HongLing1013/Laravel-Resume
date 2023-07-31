@@ -35,7 +35,9 @@ class ResumeExperienceController extends AdminController
         $grid->disableColumnSelector();
 
         $grid->column('job_title', __('職稱'));
-        $grid->column('year_from', __('開始時間'))->sortable();
+        $grid->column('year_from', __('開始時間'))->display(function ($year_from){
+            return date("Y-m" , strtotime($year_from));
+        })->sortable();
         $grid->column('year_to', __('結束時間'))->display(function ($year_to){
             return ($year_to != null) ?  date("Y-m" , strtotime($year_to)) :  'Present';
         })->sortable();
