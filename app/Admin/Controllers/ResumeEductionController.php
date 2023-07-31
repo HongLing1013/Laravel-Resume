@@ -86,12 +86,25 @@ class ResumeEductionController extends AdminController
 
         $form->text('degree', __('學歷'));
         $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
+        if($form->isCreating()){
+           $form->radioButton('over_time','結束時間')
+                ->options([
+                    1 => '選擇時間' ,
+                    2 => '學習中',
+                ])->when( 1, function (Form $form){
+                    $form->datetime('year_to', __(''))->default(date('Y-m-d H:i:s'));
+                })->when( 2, function (Form $form){
+                    $form->radio('year_to', __(''))->value('');
+                });
+        }
         $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
         $form->text('institution', __('學校名稱'));
         $form->text('description', __('描述'));
         if($form->isCreating()){
             $form->hidden('rcid')->default('2');
         }
+
+        $form->ignore(['over_time']);//忽略
 
         return $form;
     }
