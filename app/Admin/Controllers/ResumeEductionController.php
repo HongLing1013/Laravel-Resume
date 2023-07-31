@@ -38,8 +38,12 @@ class ResumeEductionController extends AdminController
         $grid->disableColumnSelector();
 
         $grid->column('degree', __('學歷'));
-        $grid->column('year_from', __('開始時間'))->sortable();
-        $grid->column('year_to', __('結束時間'))->sortable();
+        $grid->column('year_from', __('開始時間'))->display(function ($year_from){
+            return date("Y-m" , strtotime($year_from));
+        })->sortable();
+        $grid->column('year_to', __('結束時間'))->display(function ($year_to){
+            return date("Y-m" , strtotime($year_to));
+        })->sortable();
         $grid->column('institution', __('學校名稱'));
         $grid->column('description', __('描述'))->display(function ($description){
             return html_entity_decode(nl2br($description));
