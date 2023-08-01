@@ -42,7 +42,7 @@ class ResumeEductionController extends AdminController
             return date("Y-m" , strtotime($year_from));
         })->sortable();
         $grid->column('year_to', __('結束時間'))->display(function ($year_to){
-            return date("Y-m" , strtotime($year_to));
+            return ($year_to != null) ?  date("Y-m" , strtotime($year_to)) :  'Present';
         })->sortable();
         $grid->column('institution', __('學校名稱'));
         $grid->column('description', __('描述'))->display(function ($description){
