@@ -66,7 +66,7 @@ class ResumeExperienceController extends AdminController
         $show->field('year_from', __('開始時間'));
         $show->field('year_to', __('結束時間'));
         $show->field('company', __('工作地點'));
-        $show->field('job_description', __('工作敘述'));
+        $show->field('job_description', __('工作敘述'))->unescape();
         $show->field('updated_at', __('更新時間'));
 
         return $show;
