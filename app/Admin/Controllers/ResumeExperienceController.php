@@ -81,12 +81,16 @@ class ResumeExperienceController extends AdminController
     {
         $form = new Form(new ResumeExperience());
 
-        $form->number('rcid', __('rcid'));
         $form->text('job_title', __('職稱'));
         $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
         $form->datetime('year_to', __('結束時間'))->default(date('Y-m-d H:i:s'));
         $form->text('company', __('工作地點'));
         $form->textarea('job_description', __('工作敘述'));
+
+        if($form->isCreating()){
+            $form->hidden('rcid')->default('3');
+        }
+
         return $form;
     }
 }
