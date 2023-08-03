@@ -96,14 +96,50 @@ class ResumeEductionController extends AdminController
                 })->when( 2, function (Form $form){
                     $form->radio('year_to', __(''))->value('');
                 });
+        }else{
+            $path = explode('/', $_SERVER['REQUEST_URI'], -1);
+            if(isset($path[4]) && is_numeric($path[4])){
+                $id = $path[4];
+                $over_time = ResumeEduction::where('id',$id)->first();
+                if($over_time){
+                    $year_to = $over_time->year_to ?? null;
+                    $over_time = $over_time->year_to == null ? 2 : 1;
+                    $form->radioButton('over_time','結束時間')
+                        ->options([
+                            1 => '選擇時間' ,
+                            2 => '學習中',
+                        ])->value($over_time)
+                        ->when( 1, function (Form $form) use($year_to){
+                            $form->datetime('year_to', __(''))->default(date('Y-m-d H:i:s'))->value($year_to);
+                        })->when( 2, function (Form $form){
+                            $form->radio('year_to', __(''))->value('');
+                        });
+                }
+            }
         }
         $form->text('institution', __('學校名稱'));
         $form->text('description', __('描述'));
+
+        /* =======
+         * 隱藏欄位
+         * ======= */
         if($form->isCreating()){
             $form->hidden('rcid')->default('2');
         }
 
-        $form->ignore(['over_time']);//忽略
+        /* =======
+         * 忽略欄位
+         * ======= */
+        $form->ignore(['over_time']);
+
+        /* =====
+         * 回調
+         * ===== */
+        $form->saved(function (Form $form){
+            $eduction = $form->model();
+            $year_to = $_POST['year_to'] ?? null;
+            ResumeEduction::where('id',$eduction->id)->update([ 'year_to'=>$year_to ]);
+        });
 
         return $form;
     }
