@@ -393,6 +393,26 @@ if($form->isEditing()){
 } 
 ```
 
+- 送出時忽略欄位
+```php
+$form->ignore(['欄位名稱']);
+```
+
+- 回調參數
+```php
+$form->submitted(function (Form $form) {
+    // 送出前回調
+});
+
+$form->saving(function (Form $form) {
+    // 儲存前回調
+});
+
+$form->saved(function (Form $form) {
+    //儲存後回調
+});
+```
+
 ## CKeditor
 
 1. 安裝 ```composer require ckeditor/ckeditor```
