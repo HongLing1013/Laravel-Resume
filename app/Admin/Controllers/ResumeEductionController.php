@@ -84,6 +84,17 @@ class ResumeEductionController extends AdminController
     {
         $form = new Form(new ResumeEduction());
 
+        /* ==================
+         * 禁用下方查看按鈕
+         * 禁用下方編輯按鈕
+         * 禁用下方繼續創建按鈕
+         * ================== */
+        $form->footer(function ($footer) {
+            $footer->disableViewCheck();
+            $footer->disableEditingCheck();
+            $footer->disableCreatingCheck();
+        });
+
         $form->text('degree', __('學歷'));
         $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
         if($form->isCreating()){
