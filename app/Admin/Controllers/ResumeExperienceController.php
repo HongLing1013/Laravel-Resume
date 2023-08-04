@@ -81,6 +81,17 @@ class ResumeExperienceController extends AdminController
     {
         $form = new Form(new ResumeExperience());
 
+        /* ==================
+         * 禁用下方查看按鈕
+         * 禁用下方編輯按鈕
+         * 禁用下方繼續創建按鈕
+         * ================== */
+        $form->footer(function ($footer) {
+            $footer->disableViewCheck();
+            $footer->disableEditingCheck();
+            $footer->disableCreatingCheck();
+        });
+
         $form->text('job_title', __('職稱'));
         $form->datetime('year_from', __('開始時間'))->default(date('Y-m-d H:i:s'));
         if($form->isCreating()){
@@ -120,7 +131,7 @@ class ResumeExperienceController extends AdminController
         if($form->isCreating()){
             $form->hidden('rcid')->default('3');
         }
-        
+
         $form->ignore(['over_time']);
 
         $form->saved(function (Form $form){
