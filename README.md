@@ -279,6 +279,33 @@ class Role extends Model
 return view('頁面名稱', ['blade使用的變數名稱' => $controller使用的變數名稱]);
 ```
 
+## 開啟laravel的軟刪除
+1. cmd輸入指令創建遷移文件
+    ```php artisan make:migration update_portfolios_add_soft_delete --table portfolios```
+2. 遷移文件當中加入欄位
+```php
+//up
+Schema::table('資料表', function (Blueprint $table) {
+    $table->softDeletes(); 
+});
+//down
+Schema::table('portfolios', function (Blueprint $table) {
+    $table->dropSoftDeletes();
+});
+```
+3. 在model上方use軟刪除
+```php
+use Illuminate\Database\Eloquent\SoftDeletes;
+```
+4. model的class當中use軟刪除
+```php
+use SoftDeletes;
+```
+5. 可用字段當中加入軟刪除的欄位使其可編輯
+```php
+protected $fillable = [ 'deleted_at' ];
+```
+
 
 
 # Laravel-Admin
@@ -425,3 +452,7 @@ Admin::script('CKEDITOR.replace("ckeditor");');
 ```php
 $form->textarea('content', 'Content')->attribute(['id' => 'ckeditor']);
 ```
+
+## 使用laravel-admin的軟刪除功能
+1. 先開啟laravel內建軟刪除功能
+2. 
