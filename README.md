@@ -455,4 +455,9 @@ $form->textarea('content', 'Content')->attribute(['id' => 'ckeditor']);
 
 ## 使用laravel-admin的軟刪除功能
 1. 先開啟laravel內建軟刪除功能
-2. 
+2. 接著加入代碼製作一個回收桶的入口
+```php
+$grid->filter(function ($filter) {
+    $filter->scope('trashed', '回收站')->onlyTrashed();
+});
+```
