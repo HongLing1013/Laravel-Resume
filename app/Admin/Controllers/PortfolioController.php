@@ -40,7 +40,7 @@ class PortfolioController extends AdminController
          * 回收站入口
          * =============== */
         $grid->filter(function ($filter) {
-            $filter->scope('trashed', '回收站')->onlyTrashed();
+            $filter->scope('trashed', '回收桶')->onlyTrashed();
         });
             
         /* ===============
