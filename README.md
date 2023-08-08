@@ -501,3 +501,29 @@ $grid->actions(function ($actions) {
     }
 });
 ```
+
+## 軟刪除內使用不同的操作介面
+1. 控制器上方use
+```php
+// 圖形按鈕，如沒有要使用單一恢復或者其他自定義操作的按鈕時才可使用
+use Encore\Admin\Grid\Displayers\Actions; 
+// 下拉選單
+use Encore\Admin\Grid\Displayers\DropdownActions;
+// 右鍵選單
+use Encore\Admin\Grid\Displayers\ContextMenuActions; 
+```
+2. 添加按鈕
+```php
+// 添加右鍵選單
+if(\request('_scope_') == 'trashed'){
+    $grid->setActionClass(ContextMenuActions::class);
+}
+// 添加下拉選單
+if(\request('_scope_') == 'trashed'){
+    $grid->setActionClass(DropdownActions::class);
+}
+// 添加圖型選單
+if(\request('_scope_') == 'trashed'){
+    $grid->setActionClass(Actions::class);
+}
+```
