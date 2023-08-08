@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Grid\Displayers\ContextMenuActions; // 垃圾桶內使用右鍵
 use Encore\Admin\Show;
 
 class PortfolioController extends AdminController
@@ -25,6 +26,7 @@ class PortfolioController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Portfolio());
+
         $pcidMap = [ '1' => 'app' , '2' => 'card' , '3' => 'web' ]; 
 
         /* ===============
@@ -36,12 +38,16 @@ class PortfolioController extends AdminController
              ->disableColumnSelector()
              ->expandFilter();
 
-        /* ===============
+        /* =================
          * 回收站入口
-         * =============== */
+         * 垃圾桶內改成右鍵選單
+         * ================= */
         $grid->filter(function ($filter) {
             $filter->scope('trashed', '回收桶')->onlyTrashed();
         });
+        if(\request('_scope_') == 'trashed'){
+            $grid->setActionClass(ContextMenuActions::class);
+        }
             
         /* ===============
          * 搜尋列 -
