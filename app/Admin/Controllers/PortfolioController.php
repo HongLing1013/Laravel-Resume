@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Post\BatchRestore;
 use App\Admin\Actions\Post\Restore;
 use App\Models\Portfolio;
 use Encore\Admin\Controllers\AdminController;
@@ -52,6 +53,11 @@ class PortfolioController extends AdminController
         }
         $grid->actions(function ($actions) {
             $actions->add(new Restore);
+        });
+        $grid->batchActions(function ($batch) {
+            if (\request('_scope_') == 'trashed') {//垃圾桶
+                $batch->add(new BatchRestore()); //顯示批量恢復按鈕
+            }
         });
             
         /* ===============
