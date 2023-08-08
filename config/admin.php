@@ -402,11 +402,11 @@ return [
     |
     */
     // 圖形按鈕
-    'grid_action_class' => \Encore\Admin\Grid\Displayers\Actions::class,
+    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\Actions::class,
     // 下拉選單
-    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
     // 右鍵選單
-    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\DropdownActions::class,
+    // 'grid_action_class' => \Encore\Admin\Grid\Displayers\ContextMenuActions::class,
 
     /*
     |--------------------------------------------------------------------------
