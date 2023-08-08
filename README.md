@@ -461,3 +461,43 @@ $grid->filter(function ($filter) {
     $filter->scope('trashed', '回收站')->onlyTrashed();
 });
 ```
+3. 使用指令創建Restore的檔案
+```php artisan admin:action Post\\Restore --grid-row --name="恢復"```
+4. Restore的內容如下
+```php
+namespace App\Admin\Actions\Post;
+
+use Encore\Admin\Actions\RowAction;
+use Illuminate\Database\Eloquent\Model;
+
+class Restore extends RowAction
+{
+	public $name = '恢復';
+
+	public function handle(Model $model)
+	{
+	    $model->restore();
+
+	    return $this->response()->success('已恢復')->refresh();
+	}
+
+	public function dialog()
+	{
+	    $this->confirm('確定恢復吗？');
+	}
+}
+```
+5. 回到admin的控制器上方use    
+```php
+use App\Admin\Actions\Post\Restore;
+```
+6. 增加恢復的按鈕
+    config/admin.php 的 grid_action_class 
+    如果設定為『圖型化操作介面』會造成無法添加自定義操作按鈕的錯誤
+```php
+$grid->actions(function ($actions) {
+    if (\request('_scope_') == 'trashed') {
+        $actions->add(new Restore());
+    }
+});
+```
