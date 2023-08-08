@@ -461,9 +461,11 @@ $grid->filter(function ($filter) {
     $filter->scope('trashed', '回收站')->onlyTrashed();
 });
 ```
-3. 使用指令創建Restore的檔案
+
+## 軟刪除的單一恢復操作
+1. 使用指令創建Restore的檔案
 ```php artisan admin:action Post\\Restore --grid-row --name="恢復"```
-4. Restore的內容如下
+2. Restore的內容如下
 ```php
 namespace App\Admin\Actions\Post;
 
@@ -487,11 +489,11 @@ class Restore extends RowAction
 	}
 }
 ```
-5. 回到admin的控制器上方use    
+3. 回到admin的控制器上方use    
 ```php
 use App\Admin\Actions\Post\Restore;
 ```
-6. 增加恢復的按鈕
+4. 增加恢復的按鈕
     config/admin.php 的 grid_action_class 
     如果設定為『圖型化操作介面』會造成無法添加自定義操作按鈕的錯誤
 ```php
@@ -501,6 +503,48 @@ $grid->actions(function ($actions) {
     }
 });
 ```
+
+## 軟刪除的多行恢復操作
+1. 使用指令創建Restore的檔案
+```php artisan admin:action Post\\BatchRestore --grid-batch --name="批量恢復"```
+2. Restore的內容如下
+```php
+namespace App\Admin\Actions\Post;
+
+use Encore\Admin\Actions\BatchAction;
+use Illuminate\Database\Eloquent\Collection;
+
+class BatchRestore extends BatchAction
+{
+    public $name = '批量恢復';
+
+    public function handle(Collection $collection)
+    {
+        // foreach ($collection as $model) {
+        //     // ...
+        // }
+        $collection->each->restore();
+
+        return $this->response()->success('Success message...')->refresh();
+    }
+
+}
+```
+3. 回到admin的控制器上方use    
+```php
+use App\Admin\Actions\Post\BatchRestore;
+```
+4. 增加恢復的按鈕
+    config/admin.php 的 grid_action_class 
+    如果設定為『圖型化操作介面』會造成無法添加自定義操作按鈕的錯誤
+```php
+$grid->batchActions(function ($batch) {
+    if (\request('_scope_') == 'trashed') {
+        $batch->add(new BatchRestore());
+    }
+});
+```
+
 
 ## 軟刪除內使用不同的操作介面
 1. 控制器上方use
