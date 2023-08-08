@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Post\Restore;
 use App\Models\Portfolio;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
@@ -41,6 +42,7 @@ class PortfolioController extends AdminController
         /* =================
          * 回收站入口
          * 垃圾桶內改成右鍵選單
+         * 復原按鈕
          * ================= */
         $grid->filter(function ($filter) {
             $filter->scope('trashed', '回收桶')->onlyTrashed();
@@ -48,6 +50,9 @@ class PortfolioController extends AdminController
         if(\request('_scope_') == 'trashed'){
             $grid->setActionClass(ContextMenuActions::class);
         }
+        $grid->actions(function ($actions) {
+            $actions->add(new Restore);
+        });
             
         /* ===============
          * 搜尋列 -
