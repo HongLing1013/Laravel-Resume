@@ -11,4 +11,7 @@ class AboutCategory extends Model
 
     protected $fillable = [ 'name' ];
 
+    public function aboutAbout(){
+        return $this->hasMany(AboutAbout::class , 'acid');
+    }
 }
