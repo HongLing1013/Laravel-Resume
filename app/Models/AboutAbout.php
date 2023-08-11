@@ -10,7 +10,7 @@ class AboutAbout extends Model
     use HasFactory;
 
     protected $fillable = [ 
-        'acid', 'title', 'description', 'birthday', 
+         'title', 'description', 'birthday', 
         'website', 'degree', 'phone', 'phemailone', 
         'city', 'freelance', 'details'];
 
