@@ -126,7 +126,8 @@ return view('blade的檔案名稱');
     ```php artisan make:model Menu --migration```
 3. 已存在的表要新增欄位
     ```php artisan make:migration add_icon_to_about_counts_table --table=about_counts```
-
+4. 已存在的表要更新欄位
+    ```php artisan make:migration change_details_str_to_text_in_about_about --table=about_about```
 #### 執行與還原 Migration
 
 - 當寫好了 Migration 以後，可執行下面指令創建資料表
