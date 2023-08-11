@@ -124,6 +124,8 @@ return view('blade的檔案名稱');
     ```php artisan make:migration create_menu_table```
 2. 創建 Migration 時順便創建一個 Model
     ```php artisan make:model Menu --migration```
+3. 已存在的表要新增欄位
+    ```php artisan make:migration add_icon_to_about_counts_table --table=about_counts```
 
 #### 執行與還原 Migration
 
