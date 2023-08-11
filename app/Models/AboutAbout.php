@@ -16,6 +16,10 @@ class AboutAbout extends Model
         return $this->belongsTo(AboutCategory::class , 'acid');
     }
 
+    public function aboutCounts(){
+        return $this->belongsTo(AboutCounts::class , 'acid');
+    }
+
     public function aboutSkills(){
         return $this->belongsTo(AboutSkills::class , 'acid');
     }
