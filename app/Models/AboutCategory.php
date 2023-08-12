@@ -14,4 +14,17 @@ class AboutCategory extends Model
     public function aboutAbout(){
         return $this->hasMany(AboutAbout::class , 'acid');
     }
+
+    public function aboutCounts(){
+        return $this->hasMany(AboutCounts::class , 'acid');
+    }
+
+    public function aboutSkills(){
+        return $this->hasMany(AboutSkills::class , 'acid');
+    }
+
+    public function aboutInterests(){
+        return $this->hasMany(AboutInterests::class , 'acid');
+    }
+
 }
