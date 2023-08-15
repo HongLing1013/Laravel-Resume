@@ -27,8 +27,8 @@ class AboutCategory extends Model
         return $this->hasMany(AboutInterests::class , 'acid');
     }
 
-    public function aboutTimelines(){
-        return $this->hasMany(AboutTimelines::class , 'acid');
+    public function aboutTestimonials(){
+        return $this->hasMany(AboutTestimonials::class , 'acid');
     }
 
 }
