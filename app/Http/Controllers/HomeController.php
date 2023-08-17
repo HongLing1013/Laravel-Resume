@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutCategory;
 use App\Models\Indextext;
 use App\Models\Menu;
 use App\Models\PortfolioCategory;
@@ -24,8 +25,24 @@ class HomeController extends Controller
         $categories = PortfolioCategory::with('portfolio')->get();
         $service = Service::all();
         $resumes = ResumeCategory::with('resumeEduction', 'resumeExperience', 'resumeSumary')->get();
+        $abouts = AboutCategory::with('aboutAbout', 'aboutCounts', 'aboutInterests', 'aboutSkills', 'aboutTestimonials')->get();
 
-        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes ]);
+        foreach ($abouts as $about){
+            switch($about->name){
+                case 'about':
+                    break;
+                case 'counts':
+                    break;
+                case 'skills':
+                    break;
+                case 'interests':
+                    break;
+                case 'testimonials':
+                    break;
+
+            }
+        }
+        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts ]);
     }
 
     /**
