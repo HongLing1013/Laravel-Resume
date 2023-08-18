@@ -27,21 +27,6 @@ class HomeController extends Controller
         $resumes = ResumeCategory::with('resumeEduction', 'resumeExperience', 'resumeSumary')->get();
         $abouts = AboutCategory::with('aboutAbout', 'aboutCounts', 'aboutInterests', 'aboutSkills', 'aboutTestimonials')->get();
 
-        foreach ($abouts as $about){
-            switch($about->name){
-                case 'about':
-                    break;
-                case 'counts':
-                    break;
-                case 'skills':
-                    break;
-                case 'interests':
-                    break;
-                case 'testimonials':
-                    break;
-
-            }
-        }
         return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts ]);
     }
 
