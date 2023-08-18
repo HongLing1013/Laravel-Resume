@@ -16,9 +16,7 @@
             </div>
             <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
               <h3>{{ $about->title }}</h3>
-              <p class="fst-italic">
-                {{ $about->description }}
-              </p>
+              <p class="fst-italic">{{ $about->description }}</p>
               <div class="row">
                 <div class="col-lg-6">
                   <ul>
@@ -134,12 +132,9 @@
           </div>
           <div class="swiper-pagination"></div>
         </div>
-
         <div class="owl-carousel testimonials-carousel"></div>
 
       </div><!-- End Testimonials  -->
     @endif
-
   @endforeach
-
 <!-- End About Section -->
