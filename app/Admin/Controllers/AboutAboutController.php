@@ -84,8 +84,6 @@ class AboutAboutController extends AdminController
             $tools->disableDelete();
         });
 
-        $show->field('id', __('Id'));
-        $show->field('acid', __('Acid'));
         $show->field('img', __('大頭照'))->image();
         $show->field('title', __('職稱'));
         $show->field('description', __('職業敘述'));
