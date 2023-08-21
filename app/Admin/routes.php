@@ -35,7 +35,8 @@ Route::group([
         $router->resource('resume-experiences', ResumeExperienceController::class);
         /* 關於我 */
         $router->resource('about-abouts', AboutAboutController::class);
-        /* count */
+        /* 好評數量 */
+        $router->resource('about-counts', AboutCountsController::class);
         /* SKILLS */
         /* INTERESTS */
         /* TESTIMONIALS */
