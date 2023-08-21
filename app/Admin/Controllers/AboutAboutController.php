@@ -60,8 +60,8 @@ class AboutAboutController extends AdminController
         $grid->column('city', __('居住城市'));
         $grid->column('freelance', __('自由職業'));
         $grid->column('details', __('詳細敘述'));
-        $grid->column('created_at', __('Created at'))->hide();
-        $grid->column('updated_at', __('Updated at'))->hide();
+        $grid->column('created_at', __('創建時間'))->hide();
+        $grid->column('updated_at', __('更新時間'))->hide();
 
         return $grid;
     }
@@ -75,22 +75,32 @@ class AboutAboutController extends AdminController
     protected function detail($id)
     {
         $show = new Show(AboutAbout::findOrFail($id));
+        
+        /* ============
+         * 禁用刪除按鈕
+         * ============ */
+        
+         $show->panel()->tools(function($tools) {
+            $tools->disableDelete();
+        });
 
         $show->field('id', __('Id'));
         $show->field('acid', __('Acid'));
-        $show->field('img', __('Img'));
-        $show->field('title', __('Title'));
-        $show->field('description', __('Description'));
-        $show->field('birthday', __('Birthday'));
-        $show->field('website', __('Website'));
-        $show->field('degree', __('Degree'));
-        $show->field('phone', __('Phone'));
-        $show->field('phemailone', __('Phemailone'));
-        $show->field('city', __('City'));
-        $show->field('freelance', __('Freelance'));
-        $show->field('details', __('Details'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('img', __('大頭照'))->image();
+        $show->field('title', __('職稱'));
+        $show->field('description', __('職業敘述'));
+        $show->field('birthday', __('生日'))->as(function ($birthday){
+            return \Carbon\Carbon::parse($birthday)->format('Y-m-d');
+        });
+        $show->field('website', __('個人頁'));
+        $show->field('degree', __('程度'));
+        $show->field('phone', __('電話'));
+        $show->field('phemailone', __('E-mail'));
+        $show->field('city', __('居住城市'));
+        $show->field('freelance', __('自由職業'));
+        $show->field('details', __('詳細敘述'));
+        $show->field('created_at', __('創建時間'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -105,17 +115,17 @@ class AboutAboutController extends AdminController
         $form = new Form(new AboutAbout());
 
         $form->number('acid', __('Acid'));
-        $form->image('img', __('Img'));
-        $form->text('title', __('Title'));
-        $form->text('description', __('Description'));
-        $form->datetime('birthday', __('Birthday'))->default(date('Y-m-d H:i:s'));
-        $form->text('website', __('Website'));
-        $form->text('degree', __('Degree'));
-        $form->mobile('phone', __('Phone'));
-        $form->text('phemailone', __('Phemailone'));
-        $form->text('city', __('City'));
-        $form->text('freelance', __('Freelance'));
-        $form->textarea('details', __('Details'));
+        $form->image('img', __('大頭照'));
+        $form->text('title', __('職稱'));
+        $form->text('description', __('職業敘述'));
+        $form->datetime('birthday', __('生日'))->default(date('Y-m-d H:i:s'));
+        $form->text('website', __('個人頁'));
+        $form->text('degree', __('程度'));
+        $form->mobile('phone', __('電話'));
+        $form->text('phemailone', __('E-mail'));
+        $form->text('city', __('居住城市'));
+        $form->text('freelance', __('自由職業'));
+        $form->textarea('details', __('詳細敘述'));
 
         return $form;
     }
