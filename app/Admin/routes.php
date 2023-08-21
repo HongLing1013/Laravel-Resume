@@ -33,6 +33,12 @@ Route::group([
         $router->resource('resume-eductions', ResumeEductionController::class);
         /* 工作經歷 */
         $router->resource('resume-experiences', ResumeExperienceController::class);
+        /* 關於我 */
+        $router->resource('about-abouts', AboutAboutController::class);
+        /* count */
+        /* SKILLS */
+        /* INTERESTS */
+        /* TESTIMONIALS */
     });
 
 
