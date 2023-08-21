@@ -112,18 +112,17 @@ class AboutAboutController extends AdminController
     {
         $form = new Form(new AboutAbout());
 
-        $form->number('acid', __('Acid'));
         $form->image('img', __('大頭照'));
         $form->text('title', __('職稱'));
         $form->text('description', __('職業敘述'));
         $form->datetime('birthday', __('生日'))->default(date('Y-m-d H:i:s'));
         $form->text('website', __('個人頁'));
         $form->text('degree', __('程度'));
-        $form->mobile('phone', __('電話'));
+        $form->text('phone', __('電話'));
         $form->text('phemailone', __('E-mail'));
         $form->text('city', __('居住城市'));
         $form->text('freelance', __('自由職業'));
-        $form->textarea('details', __('詳細敘述'));
+        $form->textarea('details', __('詳細敘述'))->attribute(['id' => 'ckeditor']);
 
         return $form;
     }
