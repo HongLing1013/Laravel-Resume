@@ -26,21 +26,42 @@ class AboutAboutController extends AdminController
     {
         $grid = new Grid(new AboutAbout());
 
-        $grid->column('id', __('Id'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * 禁用分頁功能
+         * 禁用新增按鈕
+         * 禁用刪除按鈕
+         * ============ */
+
+         $grid->disableFilter();
+         $grid->disableExport();
+         $grid->disableRowSelector();
+         $grid->disableColumnSelector();
+         $grid->disablePagination();
+         $grid->disableCreateButton();
+         $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableDelete();
+         });
+        $grid->column('id', __('Id'))->hide();
         $grid->column('acid', __('Acid'))->hide();
-        $grid->column('img', __('Img'));
-        $grid->column('title', __('Title'));
-        $grid->column('description', __('Description'));
-        $grid->column('birthday', __('Birthday'));
-        $grid->column('website', __('Website'));
-        $grid->column('degree', __('Degree'));
-        $grid->column('phone', __('Phone'));
-        $grid->column('phemailone', __('Phemailone'));
-        $grid->column('city', __('City'));
-        $grid->column('freelance', __('Freelance'));
-        $grid->column('details', __('Details'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('img', __('大頭照'))->display(function ($content) {
+            return $content ? "<img src='{$content}' style='width:150px'></img>" : '';
+        });
+        $grid->column('title', __('職稱'));
+        $grid->column('description', __('職業敘述'));
+        $grid->column('birthday', __('生日'));
+        $grid->column('website', __('個人頁'));
+        $grid->column('degree', __('程度'));
+        $grid->column('phone', __('電話'));
+        $grid->column('phemailone', __('E-mail'));
+        $grid->column('city', __('居住城市'));
+        $grid->column('freelance', __('自由職業'));
+        $grid->column('details', __('詳細敘述'));
+        $grid->column('created_at', __('Created at'))->hide();
+        $grid->column('updated_at', __('Updated at'))->hide();
 
         return $grid;
     }
