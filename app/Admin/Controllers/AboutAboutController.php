@@ -52,7 +52,9 @@ class AboutAboutController extends AdminController
         });
         $grid->column('title', __('職稱'));
         $grid->column('description', __('職業敘述'));
-        $grid->column('birthday', __('生日'));
+        $grid->column('birthday', __('生日'))->display(function ($birthday){
+            return \Carbon\Carbon::parse($birthday)->format('Y-m-d');
+        });
         $grid->column('website', __('個人頁'));
         $grid->column('degree', __('程度'));
         $grid->column('phone', __('電話'));
