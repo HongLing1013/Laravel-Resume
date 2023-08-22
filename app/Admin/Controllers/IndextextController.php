@@ -35,7 +35,7 @@ class IndextextController extends AdminController
          * 禁用分頁功能
          * 禁用删除功能
          * ============ */
-        
+
         $grid->disableFilter();
         $grid->disableExport();
         $grid->disableRowSelector();
@@ -71,7 +71,7 @@ class IndextextController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('title', __('標題'));
-        $show->field('content', __('內容'));
+        $show->field('content', __('內容'))->unescape();
         $show->field('created_at', __('創建時間'));
         $show->field('updated_at', __('更新時間'));
 
