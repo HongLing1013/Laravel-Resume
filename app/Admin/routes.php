@@ -38,6 +38,7 @@ Route::group([
         /* 好評數量 */
         $router->resource('about-counts', AboutCountsController::class);
         /* SKILLS */
+        $router->resource('about-skills', AboutSkillsController::class);
         /* INTERESTS */
         /* TESTIMONIALS */
     });
