@@ -102,7 +102,7 @@ class IndextextController extends AdminController
         $form->disableEditingCheck();
         
         $form->text('title', __('標題'));
-        $form->text('content', __('內容'));
+        $form->textarea('content', __('內容'))->attribute(['id' => 'ckeditor']);
 
         return $form;
     }
