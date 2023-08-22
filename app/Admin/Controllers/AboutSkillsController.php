@@ -75,8 +75,25 @@ class AboutSkillsController extends AdminController
     {
         $form = new Form(new AboutSkills());
 
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+
         $form->text('name', __('技能'));
-        $form->text('degree', __('程度'));
+        $form->number('degree', __('程度'));
 
         if($form->isCreating()){
             $form->hidden('acid')->default('3');
