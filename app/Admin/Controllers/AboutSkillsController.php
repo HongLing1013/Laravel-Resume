@@ -15,7 +15,7 @@ class AboutSkillsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'Skills';
+    protected $title = '技能列表';
 
     /**
      * Make a grid builder.
@@ -25,6 +25,18 @@ class AboutSkillsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new AboutSkills());
+
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * ============ */
+
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
 
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('技能'));
