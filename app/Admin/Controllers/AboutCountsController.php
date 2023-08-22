@@ -82,9 +82,26 @@ class AboutCountsController extends AdminController
     {
         $form = new Form(new AboutCounts());
 
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+
         $form->text('name', __('好評類別'));
         $form->text('icon', __('Icon'));
-        $form->text('int', __('數量'));
+        $form->number('int', __('數量'));
 
         if($form->isCreating()){
             $form->hidden('acid')->default('2');
