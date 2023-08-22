@@ -114,6 +114,24 @@ class AboutAboutController extends AdminController
     {
         $form = new Form(new AboutAbout());
 
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+
         $form->image('img', __('大頭照'));
         $form->text('title', __('職稱'));
         $form->text('description', __('職業敘述'));
