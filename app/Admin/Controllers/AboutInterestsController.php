@@ -26,10 +26,22 @@ class AboutInterestsController extends AdminController
     {
         $grid = new Grid(new AboutInterests());
 
-        $grid->column('id', __('Id'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用列選擇器
+         * ============ */
+
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableColumnSelector();
+
+        $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('興趣'));
         $grid->column('icon', __('Icon'));
-        $grid->column('color', __('顏色'));
+        $grid->column('color', __('顏色'))->display(function($color){
+            return "<span style='color:{$color}'>{$color}</span>";
+        });
         $grid->column('created_at', __('創建時間'));
         $grid->column('updated_at', __('更新時間'));
 
