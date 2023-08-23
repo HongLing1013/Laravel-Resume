@@ -37,9 +37,10 @@ Route::group([
         $router->resource('about-abouts', AboutAboutController::class);
         /* 好評數量 */
         $router->resource('about-counts', AboutCountsController::class);
-        /* SKILLS */
+        /* 技能列表 */
         $router->resource('about-skills', AboutSkillsController::class);
-        /* INTERESTS */
+        /* 興趣列表 */
+        $router->resource('about-interests', AboutInterestsController::class);
         /* TESTIMONIALS */
     });
 
