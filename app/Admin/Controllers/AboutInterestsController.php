@@ -61,7 +61,9 @@ class AboutInterestsController extends AdminController
         $show->field('id', __('Id'));
         $show->field('name', __('興趣'));
         $show->field('icon', __('Icon'));
-        $show->field('color', __('顏色'));
+        $show->field('color', __('顏色'))->as(function ($color) {
+            return "<span style='color:$color'>$color</span>";
+        })->unescape(); //不轉義
         $show->field('created_at', __('創建時間'));
         $show->field('updated_at', __('更新時間'));
 
