@@ -15,7 +15,7 @@ class AboutInterestsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'AboutInterests';
+    protected $title = '興趣列表';
 
     /**
      * Make a grid builder.
@@ -27,12 +27,11 @@ class AboutInterestsController extends AdminController
         $grid = new Grid(new AboutInterests());
 
         $grid->column('id', __('Id'));
-        $grid->column('acid', __('Acid'));
-        $grid->column('name', __('Name'));
+        $grid->column('name', __('興趣'));
         $grid->column('icon', __('Icon'));
-        $grid->column('color', __('Color'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('color', __('顏色'));
+        $grid->column('created_at', __('創建時間'));
+        $grid->column('updated_at', __('更新時間'));
 
         return $grid;
     }
@@ -48,12 +47,11 @@ class AboutInterestsController extends AdminController
         $show = new Show(AboutInterests::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('acid', __('Acid'));
-        $show->field('name', __('Name'));
+        $show->field('name', __('興趣'));
         $show->field('icon', __('Icon'));
-        $show->field('color', __('Color'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('color', __('顏色'));
+        $show->field('created_at', __('創建時間'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -67,10 +65,13 @@ class AboutInterestsController extends AdminController
     {
         $form = new Form(new AboutInterests());
 
-        $form->number('acid', __('Acid'));
-        $form->text('name', __('Name'));
+        $form->text('name', __('興趣'));
         $form->text('icon', __('Icon'));
-        $form->color('color', __('Color'));
+        $form->color('color', __('顏色'));
+
+        if($form->isCreating()){
+            $form->hidden('acid')->default('4');
+        }
 
         return $form;
     }
