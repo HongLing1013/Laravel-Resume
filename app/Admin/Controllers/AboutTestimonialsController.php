@@ -15,7 +15,7 @@ class AboutTestimonialsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'AboutTestimonials';
+    protected $title = '感言列表';
 
     /**
      * Make a grid builder.
@@ -26,14 +26,13 @@ class AboutTestimonialsController extends AdminController
     {
         $grid = new Grid(new AboutTestimonials());
 
-        $grid->column('id', __('Id'));
-        $grid->column('acid', __('Acid'));
-        $grid->column('name', __('Name'));
-        $grid->column('job_title', __('Job title'));
-        $grid->column('image', __('Image'));
-        $grid->column('content', __('Content'));
-        $grid->column('created_at', __('Created at'));
-        $grid->column('updated_at', __('Updated at'));
+        $grid->column('id', __('Id'))->hide();
+        $grid->column('name', __('姓名'));
+        $grid->column('job_title', __('工作職稱'));
+        $grid->column('image', __('照片'));
+        $grid->column('content', __('感言內容'));
+        $grid->column('created_at', __('創建時間'));
+        $grid->column('updated_at', __('更新時間'));
 
         return $grid;
     }
@@ -49,13 +48,12 @@ class AboutTestimonialsController extends AdminController
         $show = new Show(AboutTestimonials::findOrFail($id));
 
         $show->field('id', __('Id'));
-        $show->field('acid', __('Acid'));
-        $show->field('name', __('Name'));
-        $show->field('job_title', __('Job title'));
-        $show->field('image', __('Image'));
-        $show->field('content', __('Content'));
-        $show->field('created_at', __('Created at'));
-        $show->field('updated_at', __('Updated at'));
+        $show->field('name', __('姓名'));
+        $show->field('job_title', __('工作職稱'));
+        $show->field('image', __('照片'));
+        $show->field('content', __('感言內容'));
+        $show->field('created_at', __('創建時間'));
+        $show->field('updated_at', __('更新時間'));
 
         return $show;
     }
@@ -69,11 +67,14 @@ class AboutTestimonialsController extends AdminController
     {
         $form = new Form(new AboutTestimonials());
 
-        $form->number('acid', __('Acid'));
-        $form->text('name', __('Name'));
-        $form->text('job_title', __('Job title'));
-        $form->image('image', __('Image'));
-        $form->text('content', __('Content'));
+        $form->text('name', __('姓名'));
+        $form->text('job_title', __('工作職稱'));
+        $form->image('image', __('照片'));
+        $form->text('content', __('感言內容'));
+
+        if($form->isCreating()){
+            $form->hidden('acid')->default('5');
+        }
 
         return $form;
     }
