@@ -66,7 +66,7 @@ class AboutTestimonialsController extends AdminController
         $show->field('id', __('Id'));
         $show->field('name', __('姓名'));
         $show->field('job_title', __('工作職稱'));
-        $show->field('image', __('照片'));
+        $show->field('image', __('照片'))->image();
         $show->field('content', __('感言內容'));
         $show->field('created_at', __('創建時間'));
         $show->field('updated_at', __('更新時間'));
