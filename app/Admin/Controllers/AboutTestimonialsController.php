@@ -83,10 +83,27 @@ class AboutTestimonialsController extends AdminController
     {
         $form = new Form(new AboutTestimonials());
 
+        /* ===================
+         * 編輯時禁用刪除按鈕
+         * 編輯時禁用顯示按鈕
+         * 禁用查看 checkbox
+         * 禁用繼續創建 checkbox
+         * 禁用繼續編輯 checkbox
+         * =================== */
+        if($form->isEditing()){
+            $form->tools(function (Form\Tools $tools) {
+                $tools->disableDelete();
+                $tools->disableView();
+            });
+        }
+        $form->disableViewCheck();
+        $form->disableCreatingCheck();
+        $form->disableEditingCheck();
+
         $form->text('name', __('姓名'));
         $form->text('job_title', __('工作職稱'));
         $form->image('image', __('照片'));
-        $form->text('content', __('感言內容'));
+        $form->textarea('content', __('感言內容'))->attribute(['id' => 'ckeditor']);
 
         if($form->isCreating()){
             $form->hidden('acid')->default('5');
