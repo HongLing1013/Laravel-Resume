@@ -26,13 +26,29 @@ class AboutTestimonialsController extends AdminController
     {
         $grid = new Grid(new AboutTestimonials());
 
+        /* ============
+         * 禁用導出按鈕
+         * 禁用列選擇器
+         * ============ */
+        $grid->disableExport();
+        $grid->disableColumnSelector();
+
+        /* ============
+         * 搜尋功能
+         * ============ */
+        $grid->filter(function($filter){
+            $filter->like('name', '姓名');
+            $filter->like('job_title', '工作職稱');
+            $filter->like('content', '感言內容');  
+        });
+
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('姓名'));
         $grid->column('job_title', __('工作職稱'));
-        $grid->column('image', __('照片'));
+        $grid->column('image', __('照片'))->image();
         $grid->column('content', __('感言內容'));
-        $grid->column('created_at', __('創建時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('創建時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }
