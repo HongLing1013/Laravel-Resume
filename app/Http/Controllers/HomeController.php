@@ -30,6 +30,10 @@ class HomeController extends Controller
         return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts ]);
     }
 
+    public function message(){
+        return 'message';
+    }
+
     /**
      * Show the form for creating a new resource.
      */
