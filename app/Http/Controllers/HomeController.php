@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AboutCategory;
 use App\Models\Indextext;
 use App\Models\Menu;
+use App\Models\Message;
 use App\Models\PortfolioCategory;
 use App\Models\ResumeCategory;
 use App\Models\Service;
@@ -31,7 +32,16 @@ class HomeController extends Controller
     }
 
     public function message(){
-        return 'message';
+
+        $message = Message::create([
+            'name' => $_POST['name'],
+            'email' => $_POST['email'],
+            'subject' => $_POST['subject'],
+            'message' => $_POST['message'],
+            'status' => 0
+        ]);
+        
+        return $message;
     }
 
     /**
