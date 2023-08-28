@@ -43,6 +43,8 @@ Route::group([
         $router->resource('about-interests', AboutInterestsController::class);
         /* 感言列表 */
         $router->resource('about-testimonials', AboutTestimonialsController::class);
+        /* 聯絡我 */
+        $router->resource('contacts', ContactController::class);
     });
 
 
