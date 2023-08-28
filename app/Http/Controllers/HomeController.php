@@ -40,8 +40,9 @@ class HomeController extends Controller
             'message' => $_POST['message'],
             'status' => 0
         ]);
-        
+
         return $message;
+
     }
 
     /**
