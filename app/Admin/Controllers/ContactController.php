@@ -91,6 +91,24 @@ class ContactController extends AdminController
     {
         $form = new Form(new Contact());
 
+        /* ==================
+         * 禁用上方刪除按鈕
+         * ================== */
+        $form->tools(function (Form\Tools $tools) {
+            $tools->disableDelete();
+        });
+
+        /* ==================
+         * 禁用下方查看按鈕
+         * 禁用下方編輯按鈕
+         * 禁用下方繼續創建按鈕
+         * ================== */
+        $form->footer(function ($footer) {
+            $footer->disableViewCheck();
+            $footer->disableEditingCheck();
+            $footer->disableCreatingCheck();
+        });
+
         $form->text('address', __('地址'));
         $form->email('email', __('E-mail'));
         $form->text('call', __('電話'));
