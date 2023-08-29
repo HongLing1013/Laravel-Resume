@@ -65,6 +65,13 @@ class ContactController extends AdminController
     {
         $show = new Show(Contact::findOrFail($id));
 
+        /* ============
+         * 禁用刪除按鈕
+         * ============ */
+        $show->panel()->tools(function($tools) {
+            $tools->disableDelete();
+        });
+
         $show->field('id', __('Id'));
         $show->field('address', __('地址'));
         $show->field('email', __('E-mail'));
