@@ -26,12 +26,31 @@ class ContactController extends AdminController
     {
         $grid = new Grid(new Contact());
 
-        $grid->column('id', __('Id'));
+        /* ============
+         * 禁用篩選按鈕
+         * 禁用導出按鈕
+         * 禁用行選擇器
+         * 禁用列選擇器
+         * 禁用分頁功能
+         * 禁用新增按鈕
+         * 禁用刪除按鈕
+         * ============ */
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disableColumnSelector();
+        $grid->disablePagination();
+        $grid->disableCreateButton();
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableDelete();
+        });
+
+        $grid->column('id', __('Id'))->hide();
         $grid->column('address', __('地址'));
-        $grid->column('email', __('Email'));
+        $grid->column('email', __('E-mail'));
         $grid->column('call', __('電話'));
-        $grid->column('created_at', __('新增時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('新增時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }
@@ -48,7 +67,7 @@ class ContactController extends AdminController
 
         $show->field('id', __('Id'));
         $show->field('address', __('地址'));
-        $show->field('email', __('Email'));
+        $show->field('email', __('E-mail'));
         $show->field('call', __('電話'));
         $show->field('created_at', __('新增時間'));
         $show->field('updated_at', __('更新時間'));
@@ -66,7 +85,7 @@ class ContactController extends AdminController
         $form = new Form(new Contact());
 
         $form->text('address', __('地址'));
-        $form->email('email', __('Email'));
+        $form->email('email', __('E-mail'));
         $form->text('call', __('電話'));
 
         return $form;
