@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutCategory;
+use App\Models\Contact;
 use App\Models\Indextext;
 use App\Models\Menu;
 use App\Models\Message;
@@ -28,7 +29,7 @@ class HomeController extends Controller
         $resumes = ResumeCategory::with('resumeEduction', 'resumeExperience', 'resumeSumary')->get();
         $abouts = AboutCategory::with('aboutAbout', 'aboutCounts', 'aboutInterests', 'aboutSkills', 'aboutTestimonials')->get();
 
-        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'social' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts ]);
+        return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'socials' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts , 'contact' => $contact ]);
     }
 
     public function message(){

@@ -9,7 +9,7 @@
 
 @section('social')
     <div class="social-links">
-        @foreach ($social as $social)
+        @foreach ($socials as $social)
           <a href="@if(empty($social->href)) # @else {{$social->href}} @endif" class="{{$social->name}}"><i class="{{$social->icon}}"></i></a>
         @endforeach
     </div>
