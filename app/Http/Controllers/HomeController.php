@@ -43,7 +43,11 @@ class HomeController extends Controller
             'status' => 0
         ]);
 
-        return $message;
+        if ($message) {
+            return 'OK';
+        } else {
+            return '請再試一次';
+        }
 
     }
 
