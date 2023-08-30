@@ -28,6 +28,7 @@ class HomeController extends Controller
         $service = Service::all();
         $resumes = ResumeCategory::with('resumeEduction', 'resumeExperience', 'resumeSumary')->get();
         $abouts = AboutCategory::with('aboutAbout', 'aboutCounts', 'aboutInterests', 'aboutSkills', 'aboutTestimonials')->get();
+        $contact = Contact::first();
 
         return view('index', [ 'menus' => $menus , 'indexText' => $indextext , 'socials' => $social , 'categories' => $categories , 'services' => $service , 'resumes' => $resumes , 'abouts' => $abouts , 'contact' => $contact ]);
     }
