@@ -45,6 +45,8 @@ Route::group([
         $router->resource('about-testimonials', AboutTestimonialsController::class);
         /* 聯絡我 */
         $router->resource('contacts', ContactController::class);
+        /* 留言列表 */
+        $router->resource('messages', MessageController::class);
     });
 
 
