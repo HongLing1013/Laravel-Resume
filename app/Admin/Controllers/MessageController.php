@@ -26,14 +26,27 @@ class MessageController extends AdminController
     {
         $grid = new Grid(new Message());
 
-        $grid->column('id', __('Id'));
+        /* ============
+         * 禁用導出按鈕
+         * 禁用列選擇器
+         * 禁用新增按鈕
+         * ============ */
+        $grid->disableExport();
+        $grid->disableColumnSelector();
+        $grid->disableCreateButton();
+        $grid->actions(function (Grid\Displayers\Actions $actions) {
+            $actions->disableEdit();
+            $actions->disableView();
+        });
+
+        $grid->column('id', __('Id'))->sortable();
         $grid->column('name', __('名稱'));
         $grid->column('email', __('Email'));
         $grid->column('subject', __('留言主題'));
         $grid->column('message', __('留言內容'));
         $grid->column('status', __('狀態'));
-        $grid->column('created_at', __('留言時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('留言時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->hide();
 
         return $grid;
     }
