@@ -32,7 +32,7 @@ class MessageController extends AdminController
         $grid->column('subject', __('留言主題'));
         $grid->column('message', __('留言內容'));
         $grid->column('status', __('狀態'));
-        $grid->column('created_at', __('創建時間'));
+        $grid->column('created_at', __('留言時間'));
         $grid->column('updated_at', __('更新時間'));
 
         return $grid;
@@ -54,7 +54,7 @@ class MessageController extends AdminController
         $show->field('subject', __('留言主題'));
         $show->field('message', __('留言內容'));
         $show->field('status', __('狀態'));
-        $show->field('created_at', __('創建時間'));
+        $show->field('created_at', __('留言時間'));
         $show->field('updated_at', __('更新時間'));
 
         return $show;
