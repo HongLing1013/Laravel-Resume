@@ -3,6 +3,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Message;
+use App\Models\User;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -27,16 +28,40 @@ class MessageController extends AdminController
         $grid = new Grid(new Message());
 
         /* ============
+         * 名稱陣列
+         * ============ */
+
+        $statusMap = ['0' => '未讀' , '1' => '已讀'];
+
+        /* ============
          * 禁用導出按鈕
          * 禁用列選擇器
          * 禁用新增按鈕
+         * 搜尋常態開啟
          * ============ */
+
         $grid->disableExport();
         $grid->disableColumnSelector();
         $grid->disableCreateButton();
         $grid->actions(function (Grid\Displayers\Actions $actions) {
             $actions->disableEdit();
             $actions->disableView();
+        });
+        $grid->expandFilter();
+
+        /* ============
+         * 搜尋列
+         * ============ */
+        $grid->filter(function ($filter) use ($statusMap) {
+            $filter->column(1/2 , function ($filter){ //左
+                $filter->like('subject', __('留言主題'));
+                $filter->like('message', __('留言內容'));
+            });
+            $filter->column(1/2 , function ($filter) use ($statusMap)  { //右
+                $filter->like('email', __('Email'));
+                $filter->equal('status', __('狀態'))->select ($statusMap);
+                $filter->between('created_at', '留言時間')->datetime();
+            });
         });
 
         $grid->column('id', __('Id'))->sortable();
