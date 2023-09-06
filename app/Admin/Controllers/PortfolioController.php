@@ -76,7 +76,11 @@ class PortfolioController extends AdminController
         });
 
         $grid->column('id', __('Id'))->hide();
-        $grid->column('portfolioCategory.name', __('分類'))->sortable();
+        $grid->column('portfolioCategory.name', __('分類'))->label([
+            'app' => 'info',
+            'web' => 'warning',
+            'card' => 'success',
+        ])->sortable();
         $grid->column('text', __('標題'));
         $grid->column('image', __('圖片連結'))->display(function ($content) {
             return $content ? "<img src='{$content}' style='width:200px;height:150px'></img>" : '';
