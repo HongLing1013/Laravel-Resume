@@ -42,7 +42,13 @@ class SocialController extends AdminController
         $grid->column('id', __('Id'))->hide();
         $grid->column('href', __('網址'));
         $grid->column('name', __('網站名稱'));
-        $grid->column('icon', __('Icon'));
+        $grid->column('icon', __('Icon'))->icon([
+            'bi bi-twitter' => 'twitter' ,
+            'bi bi-facebook' => 'facebook' ,
+            'bi bi-instagram' => 'instagram' ,
+            'bi bi-linkedin' => 'linkedin' ,
+            'bi bi-skype' => 'skype' 
+        ]);
         $grid->column('created_at', __('創建時間'))->hide();
         $grid->column('updated_at', __('更新時間'))->display(function ($updated_at) {
             return date('Y-m-d H:i:s' , strtotime($updated_at));
