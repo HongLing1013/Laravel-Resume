@@ -45,7 +45,14 @@ class ServiceController extends AdminController
 
 
         $grid->column('id', __('Id'))->hide();
-        $grid->column('icon', __('Icon'));
+        $grid->column('icon', __('Icon'))->icon([
+            'bx bxl-dribbble' => 'dribbble' ,
+            'bx bx-file' => 'file' , 
+            'bx bx-tachometer' => 'tachometer' , 
+            'bx bx-world' => 'world' , 
+            'bx bx-slideshow' => 'slideshow' , 
+            'bx bx-arch' => 'arch' 
+        ]);
         $grid->column('title', __('標題'));
         $grid->column('content', __('敘述'));
         $grid->column('created_at', __('創建時間'))->display(function ($created_at) {
