@@ -69,9 +69,10 @@ class MessageController extends AdminController
         $grid->column('email', __('Email'));
         $grid->column('subject', __('留言主題'));
         $grid->column('message', __('留言內容'));
-        $grid->column('status', __('狀態'));
+        $grid->column('status', __('讀取狀態'))->switch(['1' => true , '0' => false]);
         $grid->column('created_at', __('留言時間'))->sortable();
         $grid->column('updated_at', __('更新時間'))->hide();
+
 
         return $grid;
     }
