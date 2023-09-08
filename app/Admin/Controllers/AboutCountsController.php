@@ -47,8 +47,8 @@ class AboutCountsController extends AdminController
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('好評類別'));
         $grid->column('icon', __('Icon'));
-        $grid->column('int', __('數量'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('int', __('數量'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }
