@@ -40,9 +40,9 @@ class AboutSkillsController extends AdminController
 
         $grid->column('id', __('Id'))->hide();
         $grid->column('name', __('技能'));
-        $grid->column('degree', __('程度'))->progressBar($style = 'info' , $size = 'sm' , $max = 100);
-        $grid->column('created_at', __('創建時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('degree', __('程度'))->progressBar($style = 'info' , $size = 'sm' , $max = 100)->sortable();
+        $grid->column('created_at', __('創建時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }
