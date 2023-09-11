@@ -42,8 +42,8 @@ class AboutInterestsController extends AdminController
         $grid->column('color', __('顏色'))->display(function($color){
             return "<span style='color:{$color}'>{$color}</span>";
         });
-        $grid->column('created_at', __('創建時間'));
-        $grid->column('updated_at', __('更新時間'));
+        $grid->column('created_at', __('創建時間'))->sortable();
+        $grid->column('updated_at', __('更新時間'))->sortable();
 
         return $grid;
     }
